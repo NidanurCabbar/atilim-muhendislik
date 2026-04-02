@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="px-6 py-6 flex justify-between items-center absolute top-0 left-0 right-0 z-40">
+      <header className="px-6 py-5 flex justify-between items-center absolute top-0 left-0 right-0 z-40">
         <Link href="/" className="inline-block">
           <Image
             src="/logo.png"

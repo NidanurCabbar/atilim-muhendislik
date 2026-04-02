@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProjectGallery from '@/components/project/ProjectGallery';
-import { getProjectBySlug, projects, contactInfo } from '@/data/projects';
+import { getProjectBySlug, forSaleProjects, projects, contactInfo } from '@/data/projects';
 
 interface PageProps {
   params: { slug: string };
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProjectBySlug(params.slug);
   if (!project) return { title: 'Proje Bulunamadı' };
   return {
-    title: `${project.name} | Atılım Mühendislik`,
+    title: `${project.fullName} | Atılım Mühendislik`,
     description: project.description,
   };
 }
@@ -28,122 +28,207 @@ export default function ProjectDetailPage({ params }: PageProps) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
 
-  const otherProjects = projects.filter((p) => p.slug !== project.slug).slice(0, 2);
+  // Other for-sale projects (excluding current)
+  const otherProjects = forSaleProjects.filter((p) => p.slug !== project.slug);
+
   const whatsappMsg = encodeURIComponent(
-    `Merhaba, "${project.name}" projesi hakkında bilgi almak istiyorum.`,
+    `Merhaba, "${project.fullName}" projesi hakkında bilgi almak istiyorum.`,
   );
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-white text-black">
       <Header />
 
-      {/* Hero */}
-      <div className="pt-[100px] px-4 md:px-6 mb-12">
-        <div className="relative h-[400px] overflow-hidden rounded-lg">
-          <Image
-            src={project.coverImage}
-            alt={project.name}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+      {/* ── Hero Image ───────────────────────────────────────────────── */}
+      <div className="relative w-full h-[55vh] min-h-[320px] bg-black">
+        <Image
+          src={project.coverImage}
+          alt={project.fullName}
+          fill
+          className="object-cover opacity-90"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+
+        {/* Project name over hero */}
+        <div className="absolute bottom-8 left-6 md:left-10">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white">
+            {project.fullName}
+          </h1>
         </div>
       </div>
 
-      {/* White content section */}
-      <section className="bg-white text-black px-4 md:px-6 py-12">
-        <div className="max-w-6xl mx-auto">
+      {/* ── White Content ─────────────────────────────────────────────── */}
+      <section className="bg-white px-4 md:px-8 py-12">
+        <div className="max-w-5xl mx-auto">
 
-          {/* Title + actions */}
-          <div className="mb-8">
-            <p className="text-gray-400 text-sm mb-1">{project.subtitle}</p>
-            <h1 className="text-3xl md:text-4xl font-light mb-2">{project.name}</h1>
-            <p className="text-gray-600 mb-6 max-w-2xl leading-relaxed">{project.description}</p>
+          {/* Description + Map+Gallery two-column */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
 
-            <div className="flex flex-wrap gap-3">
+            {/* Left: description + CTA */}
+            <div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-8 max-w-md">
+                {project.description}
+              </p>
+
+              {/* Info grid */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="border border-gray-100 p-4">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Konum</p>
+                  <p className="text-sm font-medium">{project.location}</p>
+                </div>
+                <div className="border border-gray-100 p-4">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Alan</p>
+                  <p className="text-sm font-medium">{project.area}</p>
+                </div>
+                <div className="border border-gray-100 p-4">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Yıl</p>
+                  <p className="text-sm font-medium">{project.year}</p>
+                </div>
+                <div className="border border-gray-100 p-4">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Durum</p>
+                  <p className="text-sm font-medium">
+                    {project.status === 'for-sale' ? 'Satışta' : 'Tamamlandı'}
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA buttons */}
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={project.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2.5 bg-black text-white text-xs font-semibold tracking-widest uppercase hover:bg-gray-800 transition-colors"
+                >
+                  Konumu Gör
+                </a>
+                <a
+                  href={`https://wa.me/${contactInfo.whatsapp}?text=${whatsappMsg}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2.5 border border-black text-black text-xs font-semibold tracking-widest uppercase hover:bg-black hover:text-white transition-colors"
+                >
+                  WhatsApp
+                </a>
+                <a
+                  href={`tel:${contactInfo.phone1.replace(/\s/g, '')}`}
+                  className="px-6 py-2.5 border border-gray-300 text-black text-xs font-semibold tracking-widest uppercase hover:bg-gray-100 transition-colors"
+                >
+                  Ara
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Google Maps embed thumbnail + gallery grid */}
+            <div className="space-y-3">
+              {/* Map thumbnail (static link) */}
               <a
                 href={project.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-black text-white text-sm hover:bg-gray-800 transition rounded-sm"
+                className="block relative w-full h-40 md:h-48 overflow-hidden bg-gray-200 group"
               >
-                Konum
+                <Image
+                  src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(project.location)}&zoom=14&size=800x400&maptype=roadmap&style=element:labels|visibility:off&key=YOUR_API_KEY`}
+                  alt="Harita"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={() => {}}
+                  unoptimized
+                />
+                {/* Fallback overlay */}
+                <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#888"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mx-auto mb-2"
+                    >
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span className="text-xs text-gray-500 tracking-wider">Haritada Gör →</span>
+                  </div>
+                </div>
               </a>
-              <a
-                href={`https://wa.me/${contactInfo.whatsapp}?text=${whatsappMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2.5 border border-black text-black text-sm hover:bg-gray-100 transition rounded-sm"
-              >
-                WhatsApp
-              </a>
-              <a
-                href={`tel:${contactInfo.phone1.replace(/\s/g, '')}`}
-                className="px-6 py-2.5 border border-black text-black text-sm hover:bg-gray-100 transition rounded-sm"
-              >
-                Ara
-              </a>
+
+              {/* Gallery thumbnails — 2 columns */}
+              {project.gallery.length > 0 && (
+                <div className="grid grid-cols-2 gap-2">
+                  {project.gallery.slice(0, 4).map((img, i) => (
+                    <ProjectGallery
+                      key={i}
+                      images={project.gallery}
+                      startIndex={i}
+                      thumb={img}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          {/* About */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-light mb-4">Proje Hakkında</h2>
-            <p className="text-gray-600 leading-relaxed mb-6 max-w-3xl">{project.aboutProject}</p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Konum</p>
-                <p className="font-medium text-sm">{project.location}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Alan</p>
-                <p className="font-medium text-sm">{project.area}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Yıl</p>
-                <p className="font-medium text-sm">{project.year}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Durum</p>
-                <p className="font-medium text-sm">{project.statusLabel}</p>
-              </div>
+          {/* ── Gallery full section ─────────────────────────────────── */}
+          <div className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-2 h-2 rounded-full bg-black inline-block" />
+              <h2 className="text-base font-semibold tracking-widest uppercase">Galeri</h2>
             </div>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-xl">
+              {project.aboutProject}
+            </p>
+
+            {project.gallery.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {project.gallery.map((img, i) => (
+                  <ProjectGallery
+                    key={i}
+                    images={project.gallery}
+                    startIndex={i}
+                    thumb={img}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Gallery */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-light mb-6">Görseller</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {project.gallery.map((img, i) => (
-                <ProjectGallery key={i} images={project.gallery} startIndex={i} thumb={img} />
-              ))}
-            </div>
-          </div>
-
-          {/* Other Projects */}
+          {/* ── Diğer Projelerimiz ───────────────────────────────────── */}
           {otherProjects.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-2xl font-light mb-6">Diğer Projeler</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="w-2 h-2 rounded-full bg-black inline-block" />
+                <h2 className="text-base font-semibold tracking-widest uppercase">
+                  Diğer Projelerimiz
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                 {otherProjects.map((other) => (
                   <Link key={other.slug} href={`/projects/${other.slug}`}>
                     <div className="group cursor-pointer">
-                      <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-gray-200 mb-2">
                         <Image
                           src={other.coverImage}
                           alt={other.name}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 50vw"
+                          sizes="(max-width: 768px) 50vw, 33vw"
                         />
-                      </div>
-                      <h3 className="text-xl font-light mb-1">{other.name}</h3>
-                      <div className="flex items-center gap-3 text-sm text-gray-500">
-                        <span>{other.location}</span>
-                        <span>•</span>
-                        <span>{other.statusLabel}</span>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute bottom-3 left-3">
+                          <span className="text-white text-sm font-semibold tracking-wider">
+                            {other.name}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </Link>

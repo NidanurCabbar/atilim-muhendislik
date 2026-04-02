@@ -3,243 +3,216 @@
 // The UI reads purely from this file; no component logic needs to change.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type ProjectStatus = 'for-sale' | 'completed' | 'in-progress' | 'planning';
-
-export interface ProjectFeature {
-  label: string;
-  value: string;
-}
+export type ProjectStatus = 'for-sale' | 'completed';
 
 export interface Project {
   slug: string;
-  name: string;
-  subtitle: string;
+  name: string;           // e.g. "TRIO-1"
+  fullName: string;       // e.g. "TRIO-1 İNCEK"
+  tagline: string;        // hero slider tagline, e.g. "Hayalinizdeki Villa"
   description: string;
   aboutProject: string;
   status: ProjectStatus;
-  statusLabel: string;
   location: string;
   area: string;
   year: string;
   mapsUrl: string;
   coverImage: string;
   gallery: string[];
-  features: ProjectFeature[];
-  priceLabel: string;
   completedYear?: number;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ALL PROJECTS
+// SATILIKTAKI PROJELER
 // ─────────────────────────────────────────────────────────────────────────────
 export const projects: Project[] = [
   {
-    slug: 'virga-garten',
-    name: 'Virga Garten',
-    subtitle: 'Digital Twin',
+    slug: 'trio-1',
+    name: 'TRIO-1',
+    fullName: 'TRIO-1 İNCEK',
+    tagline: 'Hayalinizdeki Villa',
     description:
-      'Virga Garten, İstanbul\'un modern yaşam standartlarını yeniden tanımlayan çağdaş bir konut projesidir. Sürdürülebilir mimari yaklaşımı ve yenilikçi tasarımıyla öne çıkar.',
+      'TRIO-1 İncek, Ankara\'nın en prestijli bölgesinde, doğayla iç içe villa yaşamını modern mimariyle buluşturan eşsiz bir konut projesidir.',
     aboutProject:
-      'Virga Garten projesi, modern şehir yaşamının tüm konforunu sunarken, doğayla iç içe bir yaşam alanı oluşturmayı amaçlamaktadır. Proje kapsamında 150 daire, sosyal alanlar ve yeşil bahçeler yer almaktadır. Enerji verimliliği odaklı tasarımı ile LEED sertifikası hedeflemektedir.',
-    status: 'in-progress',
-    statusLabel: 'Devam Ediyor',
-    location: 'İstanbul',
-    area: '25.000 m²',
+      'TRIO-1 İncek projesi; geniş villa parselleri, özel peyzaj alanları ve üst düzey mimari detaylarıyla Ankara\'da ayrıcalıklı bir yaşam sunar. Her villa bağımsız bahçe, özel havuz seçeneği ve akıllı ev sistemleriyle tasarlanmıştır. İncek\'in yeşil dokusunu koruyarak entegre olan proje, hem huzurlu hem de prestijli bir yaşam tarzı vaat eder.',
+    status: 'for-sale',
+    location: 'İncek, Ankara',
+    area: '18.500 m²',
     year: '2024–2026',
-    mapsUrl: 'https://maps.google.com/?q=İstanbul,Türkiye',
-    coverImage:
-      'https://images.unsplash.com/photo-1664813954641-1ffcb7b55fd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NjgxMzE0NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    mapsUrl: 'https://maps.google.com/?q=İncek+Ankara',
+    coverImage: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1572457598110-2e060c4588ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njg0ODg0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1641060272821-df59e2c0b5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGVzaWduJTIwb2ZmaWNlfGVufDF8fHx8MTc2ODU2MjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbnN0cnVjdGlvbiUyMGRldGFpbHxlbnwxfHx8fDE3Njg1NjIxNTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1637730826933-54287f79e1c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsb2JieSUyMGludGVyaW9yfGVufDF8fHx8MTc2ODU2MjE1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
     ],
-    features: [
-      { label: 'Daire Sayısı', value: '150 Daire' },
-      { label: 'Alan', value: '25.000 m²' },
-      { label: 'Yıl', value: '2024–2026' },
-      { label: 'Sertifika', value: 'LEED Hedefi' },
-    ],
-    priceLabel: 'Fiyat için iletişime geçin',
   },
   {
-    slug: 'hatton-visalia',
-    name: '@hatton Visalia',
-    subtitle: 'Digital Twin',
+    slug: 'trio-2',
+    name: 'TRIO-2',
+    fullName: 'TRIO-2',
+    tagline: 'Prestijin Yeni Tanımı',
     description:
-      '@hatton Visalia, Ankara\'nın prestijli bölgelerinden birinde konumlanan, lüks konut kompleksidir. Modern mimarisi ve geniş yaşam alanlarıyla dikkat çeker.',
+      'TRIO-2, modern yaşam anlayışını yüksek kaliteli malzeme kullanımı ve özgün mimarisiyle harmanlayan Ankara\'nın gözdesi haline gelen konut projesidir.',
     aboutProject:
-      '@hatton Visalia projesi, toplam 200 konut biriminden oluşmaktadır. Kompleks içerisinde fitness merkezi, yüzme havuzu, çocuk oyun alanları ve kapalı otopark bulunmaktadır. Akıllı ev sistemleri ile donatılmış daireleri sayesinde konforu en üst seviyeye çıkarmaktadır.',
-    status: 'completed',
-    statusLabel: 'Tamamlandı',
+      'TRIO-2 projesi; çağdaş mimari anlayışı, geniş sosyal donatı alanları ve üst segment yaşam standardıyla öne çıkmaktadır. Yüzme havuzu, spor merkezi, kapalı otopark ve 24/7 güvenlik sistemi ile tam anlamıyla güvenli ve konforlu bir yaşam sunmaktadır.',
+    status: 'for-sale',
     location: 'Ankara',
-    area: '35.000 m²',
-    year: '2022–2024',
-    mapsUrl: 'https://maps.google.com/?q=Ankara,Türkiye',
-    coverImage:
-      'https://images.unsplash.com/photo-1762944082416-bd1b98ccfcb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXNpZGVudGlhbCUyMGNvbXBsZXglMjBhZXJpYWwlMjB2aWV3fGVufDF8fHx8MTc2ODIyMjQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    gallery: [
-      'https://images.unsplash.com/photo-1572457598110-2e060c4588ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njg0ODg0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1641060272821-df59e2c0b5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGVzaWduJTIwb2ZmaWNlfGVufDF8fHx8MTc2ODU2MjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbnN0cnVjdGlvbiUyMGRldGFpbHxlbnwxfHx8fDE3Njg1NjIxNTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1637730826933-54287f79e1c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsb2JieSUyMGludGVyaW9yfGVufDF8fHx8MTc2ODU2MjE1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    ],
-    features: [
-      { label: 'Daire Sayısı', value: '200 Konut' },
-      { label: 'Alan', value: '35.000 m²' },
-      { label: 'Yıl', value: '2022–2024' },
-      { label: 'Otopark', value: 'Kapalı Otopark' },
-    ],
-    priceLabel: 'Tamamlanmış Proje',
-    completedYear: 2024,
-  },
-  {
-    slug: 'onyx-pectra',
-    name: 'ONYX Pectra',
-    subtitle: 'Digital Twin',
-    description:
-      'ONYX Pectra, İzmir\'in yeni simgesi olmaya aday, gökyüzüne uzanan modern bir kule projesidir. Lüks rezidans ve ofis alanlarını bir araya getirmektedir.',
-    aboutProject:
-      'ONYX Pectra projesi, 30 katlı yapısı ile İzmir siluetine yeni bir soluk getirmektedir. Karma kullanımlı tasarımı sayesinde hem rezidans hem de ofis alanları barındırmaktadır. Panoramik manzara sunan daireleri, yüksek tavanları ve premium malzeme kullanımı ile öne çıkmaktadır.',
-    status: 'in-progress',
-    statusLabel: 'Devam Ediyor',
-    location: 'İzmir',
-    area: '45.000 m²',
+    area: '22.000 m²',
     year: '2024–2027',
-    mapsUrl: 'https://maps.google.com/?q=İzmir,Türkiye',
-    coverImage:
-      'https://images.unsplash.com/photo-1596458162361-c3177aaa48b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB0b3dlciUyMGJ1aWxkaW5nfGVufDF8fHx8MTc2ODIwMzg5OHww&ixlib=rb-4.1.0&q=80&w=1080',
+    mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
+    coverImage: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1572457598110-2e060c4588ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njg0ODg0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1641060272821-df59e2c0b5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGVzaWduJTIwb2ZmaWNlfGVufDF8fHx8MTc2ODU2MjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbnN0cnVjdGlvbiUyMGRldGFpbHxlbnwxfHx8fDE3Njg1NjIxNTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1637730826933-54287f79e1c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsb2JieSUyMGludGVyaW9yfGVufDF8fHx8MTc2ODU2MjE1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80',
+      'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
     ],
-    features: [
-      { label: 'Kat Sayısı', value: '30 Kat' },
-      { label: 'Alan', value: '45.000 m²' },
-      { label: 'Yıl', value: '2024–2027' },
-      { label: 'Kullanım', value: 'Karma (Rezidans + Ofis)' },
-    ],
-    priceLabel: 'Fiyat için iletişime geçin',
   },
   {
-    slug: 'ruby-smalt',
-    name: 'Ruby Smalt',
-    subtitle: 'Digital Twin',
+    slug: 'labris',
+    name: 'LABRİS',
+    fullName: 'LABRİS',
+    tagline: 'Benzersiz Bir Deneyim',
     description:
-      'Ruby Smalt, Antalya\'da turizm ve konut konseptini birleştiren yenilikçi bir proje. Eşsiz mimari tasarımı ile bölgenin cazibe merkezi olmayı hedefliyor.',
+      'LABRİS; çarpıcı cephesi ve özgün tasarımıyla Ankara\'ya yeni bir soluk getiren, mimari çizgisiyle dikkat çeken prestijli bir konut projesidir.',
     aboutProject:
-      'Ruby Smalt projesi, Antalya\'nın eşsiz doğal güzelliklerinden ilham alan bir tasarıma sahiptir. Otel konseptli rezidans daireleri, plaj kulüpleri ve sosyal alanları ile tatil ve yaşam deneyimini bir araya getirmektedir. Sürdürülebilir turizm anlayışı ile çevreye saygılı bir yaklaşım benimsenmiştir.',
-    status: 'planning',
-    statusLabel: 'Planlama',
-    location: 'Antalya',
-    area: '50.000 m²',
-    year: '2025–2028',
-    mapsUrl: 'https://maps.google.com/?q=Antalya,Türkiye',
-    coverImage:
-      'https://images.unsplash.com/photo-1636739067155-643a5c678831?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb21tZXJjaWFsJTIwYnVpbGRpbmclMjB3aGl0ZXxlbnwxfHx8fDE3NjgyMjI0OTR8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    gallery: [
-      'https://images.unsplash.com/photo-1572457598110-2e060c4588ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njg0ODg0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1641060272821-df59e2c0b5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGVzaWduJTIwb2ZmaWNlfGVufDF8fHx8MTc2ODU2MjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbnN0cnVjdGlvbiUyMGRldGFpbHxlbnwxfHx8fDE3Njg1NjIxNTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1637730826933-54287f79e1c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsb2JieSUyMGludGVyaW9yfGVufDF8fHx8MTc2ODU2MjE1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    ],
-    features: [
-      { label: 'Alan', value: '50.000 m²' },
-      { label: 'Yıl', value: '2025–2028' },
-      { label: 'Konsept', value: 'Turizm + Konut' },
-      { label: 'Çevre', value: 'Sürdürülebilir Tasarım' },
-    ],
-    priceLabel: 'Fiyat için iletişime geçin',
-  },
-  {
-    slug: 'peryurt-baglica',
-    name: 'Peryurt Bağlıca',
-    subtitle: 'Digital Twin',
-    description:
-      'Peryurt Bağlıca, Ankara Bağlıca bölgesinde tamamlanmış prestijli bir konut projesidir. Aile yaşamına uygun geniş daireler ve sosyal alanlar sunmaktadır.',
-    aboutProject:
-      'Peryurt Bağlıca projesi, aile odaklı yaşam konsepti ile tasarlanmıştır. Geniş yeşil alanlar, çocuk oyun parkları, spor alanları ve sosyal tesisleri ile tam bir yaşam merkezi oluşturmaktadır. 24/7 güvenlik, yer altı otoparkı ve akıllı ev sistemleri projede standart olarak sunulmaktadır.',
-    status: 'completed',
-    statusLabel: 'Tamamlandı',
+      'LABRİS projesi, güçlü mimari kimliği ve premium yaşam alanlarıyla sektörde fark yaratmaktadır. Etkileyici giriş lobisi, ticari zemin katlar ve üst katlarda yer alan geniş rezidans daireleriyle karma kullanım anlayışını başarıyla yansıtmaktadır.',
+    status: 'for-sale',
     location: 'Ankara',
-    area: '30.000 m²',
-    year: '2021–2023',
-    mapsUrl: 'https://maps.google.com/?q=Bağlıca,Ankara',
-    coverImage:
-      'https://images.unsplash.com/photo-1760247184915-ee8314f2faf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGRldmVsb3BtZW50fGVufDF8fHx8MTc2ODIyMjQ5NHww&ixlib=rb-4.1.0&q=80&w=1080',
+    area: '28.000 m²',
+    year: '2025–2027',
+    mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
+    coverImage: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1572457598110-2e060c4588ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njg0ODg0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1641060272821-df59e2c0b5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGVzaWduJTIwb2ZmaWNlfGVufDF8fHx8MTc2ODU2MjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbnN0cnVjdGlvbiUyMGRldGFpbHxlbnwxfHx8fDE3Njg1NjIxNTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1637730826933-54287f79e1c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsb2JieSUyMGludGVyaW9yfGVufDF8fHx8MTc2ODU2MjE1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
     ],
-    features: [
-      { label: 'Alan', value: '30.000 m²' },
-      { label: 'Yıl', value: '2021–2023' },
-      { label: 'Güvenlik', value: '24/7 Güvenlik' },
-      { label: 'Otopark', value: 'Yer Altı Otoparkı' },
-    ],
-    priceLabel: 'Tamamlanmış Proje',
-    completedYear: 2023,
   },
   {
-    slug: 'lagoon',
-    name: 'Lagoon',
-    subtitle: 'Digital Twin',
+    slug: 'ilko',
+    name: 'İLKO',
+    fullName: 'İLKO',
+    tagline: 'Prestijin Yeni İmzası',
     description:
-      'Lagoon, İstanbul\'da su temalı mimari konsepti ile öne çıkan modern bir konut projesidir. Doğa ve şehir yaşamını harmanlayan benzersiz bir tasarıma sahiptir.',
+      'İLKO; yenilikçi mimari anlayışı ve ayrıcalıklı konumuyla Ankara\'nın yükselen değeri olan, modern konut projesinde yeni standartları belirliyor.',
     aboutProject:
-      'Lagoon projesi, su öğesini merkeze alan peyzaj tasarımı ve mimari anlayışı ile dikkat çekmektedir. Yapay gölet etrafında şekillenen yaşam alanları, sakinlerine huzurlu bir ortam sunmaktadır. Yürüyüş yolları, su sporları alanları ve modern sosyal tesisleri ile eksiksiz bir yaşam deneyimi vaat etmektedir.',
-    status: 'in-progress',
-    statusLabel: 'Devam Ediyor',
-    location: 'İstanbul',
-    area: '40.000 m²',
-    year: '2023–2026',
-    mapsUrl: 'https://maps.google.com/?q=İstanbul,Türkiye',
-    coverImage:
-      'https://images.unsplash.com/photo-1762944082416-bd1b98ccfcb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXNpZGVudGlhbCUyMGNvbXBsZXglMjBhZXJpYWwlMjB2aWV3fGVufDF8fHx8MTc2ODIyMjQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      'İLKO projesi; şehrin kalbinde stratejik konumu, çarpıcı cephesi ve lüks iç mekan tasarımıyla öne çıkmaktadır. Geniş balkonlar, panoramik manzaralar ve yüksek tavan yükseklikleri ile farklı bir yaşam deneyimi sunmaktadır. Akıllı ev sistemleri ve enerji verimliliği odaklı tasarımıyla geleceğe hazır bir proje.',
+    status: 'for-sale',
+    location: 'Ankara',
+    area: '15.000 m²',
+    year: '2024–2026',
+    mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
+    coverImage: 'https://images.unsplash.com/photo-1464082354059-27db6ce50048?w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1572457598110-2e060c4588ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njg0ODg0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1641060272821-df59e2c0b5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGVzaWduJTIwb2ZmaWNlfGVufDF8fHx8MTc2ODU2MjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbnN0cnVjdGlvbiUyMGRldGFpbHxlbnwxfHx8fDE3Njg1NjIxNTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1637730826933-54287f79e1c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsb2JieSUyMGludGVyaW9yfGVufDF8fHx8MTc2ODU2MjE1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1464082354059-27db6ce50048?w=1200&q=80',
+      'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
     ],
-    features: [
-      { label: 'Alan', value: '40.000 m²' },
-      { label: 'Yıl', value: '2023–2026' },
-      { label: 'Konsept', value: 'Su Temalı Peyzaj' },
-      { label: 'Sosyal', value: 'Gölet & Spor Alanları' },
+  },
+
+  // ─── TAMAMLANMIŞ PROJELER ───────────────────────────────────────────────
+  {
+    slug: 'esenboga-havalimani',
+    name: 'Esenboğa Havalimanı',
+    fullName: 'Esenboğa Havalimanı',
+    tagline: 'Tamamlandı',
+    description: 'Ankara Esenboğa Havalimanı terminal projesi.',
+    aboutProject: 'Ankara Esenboğa Havalimanı yeni terminal yapısı, modern havacılık mimarisinin en başarılı örneklerinden biridir.',
+    status: 'completed',
+    location: 'Ankara',
+    area: '120.000 m²',
+    year: '2018–2021',
+    mapsUrl: 'https://maps.google.com/?q=Esenboğa+Havalimanı+Ankara',
+    coverImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80',
     ],
-    priceLabel: 'Fiyat için iletişime geçin',
+    completedYear: 2021,
+  },
+  {
+    slug: '360-avm',
+    name: '360 AVM',
+    fullName: '360 AVM',
+    tagline: 'Tamamlandı',
+    description: '360 Alışveriş Merkezi projesi.',
+    aboutProject: 'Modern mimari anlayışıyla tasarlanan 360 AVM, bölgenin ticari yaşamına katkı sağlayan büyük ölçekli bir alışveriş merkezi projesidir.',
+    status: 'completed',
+    location: 'Ankara',
+    area: '85.000 m²',
+    year: '2019–2022',
+    mapsUrl: 'https://maps.google.com/?q=360+AVM+Ankara',
+    coverImage: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1200&q=80',
+    ],
+    completedYear: 2022,
+  },
+  {
+    slug: 'odtu-kktc-kampusu',
+    name: 'ODTÜ KKTC Kampüsü',
+    fullName: 'ODTÜ KKTC Kampüsü',
+    tagline: 'Tamamlandı',
+    description: 'ODTÜ Kuzey Kıbrıs Türk Cumhuriyeti Kampüsü inşaat projesi.',
+    aboutProject: 'ODTÜ KKTC Kampüsü, üniversitenin yurt dışındaki ilk kampüsü olup modern eğitim yapıları ve sosyal alanlarıyla örnek bir eğitim merkezi oluşturmaktadır.',
+    status: 'completed',
+    location: 'Kuzey Kıbrıs',
+    area: '200.000 m²',
+    year: '2016–2020',
+    mapsUrl: 'https://maps.google.com/?q=ODTÜ+KKTC+Kampüsü',
+    coverImage: 'https://images.unsplash.com/photo-1562774053-701939374585?w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1562774053-701939374585?w=1200&q=80',
+    ],
+    completedYear: 2020,
+  },
+  {
+    slug: 'erifsha-international-airport',
+    name: 'Erifsha International Airport',
+    fullName: 'Erifsha International Airport',
+    tagline: 'Tamamlandı',
+    description: 'Erifsha Uluslararası Havalimanı terminal ve apron inşaat projesi.',
+    aboutProject: 'Erifsha Uluslararası Havalimanı, modern terminal binası ve altyapısıyla bölgenin hava ulaşımına önemli katkılar sağlayan büyük ölçekli bir havalimanı projesidir.',
+    status: 'completed',
+    location: 'Uluslararası',
+    area: '95.000 m²',
+    year: '2020–2023',
+    mapsUrl: 'https://maps.google.com/?q=Erifsha+International+Airport',
+    coverImage: 'https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1200&q=80',
+    ],
+    completedYear: 2023,
   },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HERO SLIDER
+// HERO SLIDES
 // ─────────────────────────────────────────────────────────────────────────────
 export const heroSlides = [
   {
-    image: '/images/hero/slide-1.png',
-    title: 'RUBY SMALT',
-    subtitle: 'Modern yaşamı yeniden tanımlıyoruz',
-    projectSlug: 'ruby-smalt',
+    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=90',
+    tagline: 'Hayalinizdeki Villa',
+    projectName: 'TRIO-1',
+    projectSlug: 'trio-1',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1695067440629-b5e513976100?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBidWlsZGluZyUyMGV4dGVyaW9yfGVufDF8fHx8MTc2ODM4MTg5Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'VIRGA GARTEN',
-    subtitle: '25 yıllık deneyim, sınırsız güven',
-    projectSlug: 'virga-garten',
+    image: 'https://images.unsplash.com/photo-1464082354059-27db6ce50048?w=1600&q=90',
+    tagline: 'Prestijin Yeni İmzası',
+    projectName: 'İLKO',
+    projectSlug: 'ilko',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1673978483073-f6e8e5b086c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc2ODM4Nzc4NXww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'ONYX PECTRA',
-    subtitle: 'İzmir\'in yeni simgesi',
-    projectSlug: 'onyx-pectra',
+    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=90',
+    tagline: 'Benzersiz Bir Deneyim',
+    projectName: 'LABRİS',
+    projectSlug: 'labris',
   },
 ];
 
@@ -250,9 +223,9 @@ export const contactInfo = {
   phone1: '+90 312 000 00 00',
   phone2: '+90 530 000 00 00',
   whatsapp: '905300000000',
-  email: 'info@atilim.com',
+  email: 'info@atilimmuhendislik.com',
   addressTR: 'Reşitpaşa Süyü Tower, Yazıcıoğlu Cd., 06830 Çankaya/Ankara',
-  addressUS: '823 Middlesex Turnpike, Burlington, MA 01803, Amerika Birleşik Devletleri',
+  addressUS: '823 Middlesex Turnpike, Burlington, MA 01803, USA',
   companyName: 'Atılım Mühendislik İnşaat A.Ş.',
   linkedin: '#',
   instagram: '#',
@@ -265,8 +238,5 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
-export const forSaleProjects = projects.filter(
-  (p) => p.status === 'for-sale' || p.status === 'in-progress' || p.status === 'planning',
-);
-
+export const forSaleProjects = projects.filter((p) => p.status === 'for-sale');
 export const completedProjects = projects.filter((p) => p.status === 'completed');

@@ -12,12 +12,12 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-brand-dark text-white antialiased;
+    @apply bg-black text-white antialiased;
     font-family: var(--font-inter), system-ui, sans-serif;
   }
 
   h1, h2, h3, h4 {
-    font-family: var(--font-playfair), Georgia, serif;
+    font-family: var(--font-inter), system-ui, sans-serif;
   }
 }
 
