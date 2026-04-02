@@ -121,44 +121,32 @@ export default function ProjectDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* Right: Google Maps embed thumbnail + gallery grid */}
+            {/* Right: Map button + gallery grid */}
             <div className="space-y-3">
-              {/* Map thumbnail (static link) */}
+              {/* Map CTA box */}
               <a
                 href={project.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block relative w-full h-40 md:h-48 overflow-hidden bg-gray-200 group"
+                className="flex items-center justify-center gap-3 w-full h-32 md:h-36 bg-gray-100 border border-gray-200 hover:bg-gray-200 transition-colors group"
               >
-                <Image
-                  src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(project.location)}&zoom=14&size=800x400&maptype=roadmap&style=element:labels|visibility:off&key=YOUR_API_KEY`}
-                  alt="Harita"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  onError={() => {}}
-                  unoptimized
-                />
-                {/* Fallback overlay */}
-                <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#888"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mx-auto mb-2"
-                    >
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    <span className="text-xs text-gray-500 tracking-wider">Haritada Gör →</span>
-                  </div>
-                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#333"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span className="text-sm font-semibold tracking-widest uppercase text-gray-700 group-hover:text-black transition-colors">
+                  Haritada Gör
+                </span>
               </a>
 
               {/* Gallery thumbnails — 2 columns */}

@@ -18,7 +18,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.6, delay: index * 0.12 }}
-      className="group relative bg-brand-dark-3 overflow-hidden border border-white/5 hover:border-brand-gold/30 transition-colors duration-500"
+      className="group relative overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500"
     >
       {/* Image */}
       <div className="relative h-64 overflow-hidden">
@@ -28,55 +28,34 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
-
-        {/* Status badge */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
         <div className="absolute top-4 left-4">
-          <span className="bg-brand-gold text-brand-dark text-[10px] tracking-widest uppercase font-semibold px-3 py-1">
+          <span className="bg-white text-black text-[10px] tracking-widest uppercase font-semibold px-3 py-1">
             Satışta
           </span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <div className="flex items-start gap-1.5 text-brand-gray text-xs mb-2">
-          <MapPin size={12} className="mt-0.5 shrink-0 text-brand-gold" />
+      <div className="p-6 bg-[#111]">
+        <div className="flex items-start gap-1.5 text-gray-400 text-xs mb-2">
+          <MapPin size={12} className="mt-0.5 shrink-0 text-white" />
           {project.location}
         </div>
 
-        <h3 className="font-serif text-xl text-white group-hover:text-brand-gold transition-colors">
-          {project.name}
+        <h3 className="text-xl text-white group-hover:text-gray-300 transition-colors">
+          {project.fullName}
         </h3>
-        <p className="text-brand-gray text-sm mt-1">{project.subtitle}</p>
+        <p className="text-gray-500 text-sm mt-1">{project.tagline}</p>
 
-        {/* Key features preview */}
-        {project.features.slice(0, 2).length > 0 && (
-          <div className="mt-4 flex gap-4">
-            {project.features.slice(0, 2).map((f) => (
-              <div key={f.label} className="flex flex-col">
-                <span className="text-brand-gold text-xs font-medium">{f.value}</span>
-                <span className="text-brand-gray/60 text-[10px]">{f.label}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Price */}
-        <p className="mt-4 text-brand-gold text-sm font-medium">{project.priceLabel}</p>
-
-        {/* CTA */}
         <Link
           href={`/projects/${project.slug}`}
-          className="mt-5 flex items-center gap-2 text-sm text-white/70 hover:text-brand-gold transition-colors group/link"
+          className="mt-5 flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors group/link"
         >
-          <span className="border-b border-transparent group-hover/link:border-brand-gold transition-colors pb-0.5">
+          <span className="border-b border-transparent group-hover/link:border-white transition-colors pb-0.5">
             Detayları Gör
           </span>
-          <ArrowRight
-            size={14}
-            className="transition-transform group-hover/link:translate-x-1"
-          />
+          <ArrowRight size={14} className="transition-transform group-hover/link:translate-x-1" />
         </Link>
       </div>
     </motion.article>
