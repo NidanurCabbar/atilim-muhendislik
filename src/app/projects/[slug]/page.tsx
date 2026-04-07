@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import GalleryButton from '@/components/project/GalleryButton';
+import ProjectImageGrid from '@/components/project/ProjectImageGrid';
 import { getProjectBySlug, forSaleProjects, projects, contactInfo } from '@/data/projects';
 
 interface PageProps {
@@ -69,87 +69,15 @@ export default function ProjectDetailPage({ params }: PageProps) {
       <section className="bg-white px-4 md:px-8 py-10">
         <div className="max-w-5xl mx-auto">
 
-          {/* Two-column image layout */}
-          <div className="grid md:grid-cols-[55%_45%] gap-4 mb-14">
-
-            {/* Left column: 1 large image + 2 smaller images + buttons */}
-            <div className="flex flex-col gap-3">
-              {/* Large top image */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-gray-200">
-                <Image
-                  src={img1}
-                  alt={`${project.name} - 1`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                  sizes="55vw"
-                />
-              </div>
-
-              {/* Two smaller images */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="relative aspect-[4/3] overflow-hidden bg-gray-200">
-                  <Image
-                    src={img2}
-                    alt={`${project.name} - 2`}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                    sizes="27vw"
-                  />
-                </div>
-                <div className="relative aspect-[4/3] overflow-hidden bg-gray-200">
-                  <Image
-                    src={img3}
-                    alt={`${project.name} - 3`}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                    sizes="27vw"
-                  />
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <a
-                  href={project.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 bg-black text-white text-xs font-semibold tracking-widest uppercase hover:bg-gray-800 transition-colors"
-                >
-                  Konumu Gör
-                </a>
-                <a
-                  href={`https://wa.me/${contactInfo.whatsapp}?text=${whatsappMsg}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 border border-black text-black text-xs font-semibold tracking-widest uppercase hover:bg-black hover:text-white transition-colors"
-                >
-                  Bilgi Al
-                </a>
-              </div>
-            </div>
-
-            {/* Right column: large portrait image + gallery section */}
-            <div className="flex flex-col gap-5">
-              <div className="relative aspect-[3/4] overflow-hidden bg-gray-200">
-                <Image
-                  src={img4}
-                  alt={`${project.name} - 4`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                  sizes="45vw"
-                />
-              </div>
-
-              <div>
-                <h2 className="text-sm font-semibold tracking-[0.2em] uppercase mb-3">
-                  Galeri
-                </h2>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  {project.aboutProject}
-                </p>
-                <GalleryButton images={project.gallery} />
-              </div>
-            </div>
-          </div>
+          {/* Two-column image layout — tıklanabilir galeri */}
+          <ProjectImageGrid
+            images={[img1, img2, img3, img4]}
+            projectName={project.name}
+            aboutProject={project.aboutProject}
+            mapsUrl={project.mapsUrl}
+            whatsappHref={`https://wa.me/${contactInfo.whatsapp}?text=${whatsappMsg}`}
+            galleryImages={project.gallery}
+          />
 
           {/* ── Diğer Projelerimiz ───────────────────────────────────── */}
           {otherProjects.length > 0 && (
