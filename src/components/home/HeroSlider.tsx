@@ -73,8 +73,8 @@ export default function HeroSlider() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Named project tabs + Keşfet button */}
-        <div className="flex items-center gap-2 flex-wrap">
+        {/* Progress lines */}
+        <div className="flex items-end gap-2">
           {heroSlides.map((s, i) => (
             <button
               key={i}
@@ -83,16 +83,23 @@ export default function HeroSlider() {
                 resetTimer();
               }}
               aria-label={s.projectName}
-              className={`px-4 py-1.5 text-[11px] tracking-widest uppercase border transition-all duration-300 ${
-                i === current
-                  ? 'bg-white text-black border-white'
-                  : 'bg-black/30 text-white/60 border-white/25 hover:border-white/50 hover:text-white/80 backdrop-blur-sm'
-              }`}
+              className="relative overflow-hidden bg-white/25 cursor-pointer"
+              style={{
+                height: i === current ? 4 : 2,
+                width: i === current ? 80 : 40,
+                transition: 'width 0.4s ease, height 0.4s ease',
+              }}
             >
-              {s.projectName}
+              {i === current && (
+                <span
+                  className="absolute inset-y-0 left-0 bg-white"
+                  style={{
+                    animation: `progress-fill ${INTERVAL}ms linear forwards`,
+                  }}
+                />
+              )}
             </button>
           ))}
-
         </div>
       </div>
     </section>
