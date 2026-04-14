@@ -11,7 +11,7 @@ export default function ProjectsForSale() {
 
       {/* Section header */}
       <h2
-        className="text-center text-sm font-semibold tracking-[0.2em] uppercase text-black mb-8"
+        className="text-center text-2xl md:text-3xl font-bold tracking-wide text-black mb-8"
         style={{ fontFamily: 'var(--font-manrope), system-ui, sans-serif' }}
       >
         Satıştaki Projeler
@@ -47,7 +47,7 @@ export default function ProjectsForSale() {
                   {/* Project name — bottom center, above button */}
                   <div className="absolute bottom-12 left-0 right-0 flex justify-center">
                     <span
-                      className="text-white text-sm md:text-base font-semibold tracking-widest uppercase"
+                      className="text-white text-lg md:text-2xl font-semibold tracking-widest uppercase"
                       style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
                     >
                       {project.name}

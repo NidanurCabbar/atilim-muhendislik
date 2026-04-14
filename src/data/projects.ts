@@ -34,7 +34,7 @@ export const projects: Project[] = [
     description:
       'TRIO-1 İncek, Ankara\'nın en prestijli bölgesinde, doğayla iç içe villa yaşamını modern mimariyle buluşturan eşsiz bir konut projesidir.',
     aboutProject:
-      'TRIO-1 İncek projesi; geniş villa parselleri, özel peyzaj alanları ve üst düzey mimari detaylarıyla Ankara\'da ayrıcalıklı bir yaşam sunar. Her villa bağımsız bahçe, özel havuz seçeneği ve akıllı ev sistemleriyle tasarlanmıştır. İncek\'in yeşil dokusunu koruyarak entegre olan proje, hem huzurlu hem de prestijli bir yaşam tarzı vaat eder.',
+      'İncek\'in değer kazanan lokasyonunda yer alan Trio-1 İncek; çevresindeki sosyal olanaklar ve modern yaşam standartlarıyla hem yaşam hem de yatırım için güçlü bir alternatif sunuyor. Geniş ve kullanışlı yaşam alanları, estetik mimari detaylar ve çağdaş konseptiyle Trio-1 İncek, kendine özgü bir kent yaşamı arayanlar için özenle tasarlandı.',
     status: 'for-sale',
     location: 'İncek, Ankara',
     area: '18.500 m²',
@@ -43,8 +43,8 @@ export const projects: Project[] = [
     coverImage: '/images/projects/trio-1-cover-v2.png',
     gallery: [
       '/images/projects/trio-1-cover-v2.png',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+      '/images/projects/trio-1-kat-plani.png',                                      // kat planı — add your floor plan image here
+      '/images/projects/trio-1-ic-tasarim.png',                                     // iç tasarım — add your luxury interior image here
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',

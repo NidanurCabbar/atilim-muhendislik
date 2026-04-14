@@ -45,7 +45,7 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
           <div className="flex flex-col h-full px-8 py-8 md:px-14 md:py-10">
 
             {/* Top bar */}
-            <div className="flex justify-between items-start mb-16">
+            <div className="flex justify-between items-center mb-16">
               <Image
                 src="/logo.png"
                 alt="Atılım Mühendislik"
@@ -56,8 +56,9 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
               <button
                 onClick={onClose}
                 aria-label="Kapat"
-                className="w-10 h-10 flex items-center justify-center text-white hover:text-white/60 transition"
+                className="flex items-center gap-3 px-2 h-12 text-white hover:text-white/60 transition"
               >
+                <span className="text-xs tracking-[0.25em] font-light uppercase">Kapat</span>
                 <X className="w-6 h-6" />
               </button>
             </div>

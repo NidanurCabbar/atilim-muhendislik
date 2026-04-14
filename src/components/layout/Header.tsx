@@ -1,33 +1,106 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import DrawerMenu from './DrawerMenu';
 
+/** Returns true only for near-white solid colours (luminance > 0.85) */
+function isNearWhite(rgb: string): boolean {
+  const m = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!m) return false;
+  const lum = (0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3]) / 255;
+  return lum > 0.85;
+}
+
+/**
+ * Sample the element stack at a given viewport point, hiding `skip` first so
+ * we see what is behind the header. Returns true if the background is white
+ * with no image in the stack (safe to show dark logo).
+ */
+function isSolidWhiteBehind(x: number, y: number, skip: HTMLElement): boolean {
+  skip.style.visibility = 'hidden';
+  const stack = document.elementsFromPoint(x, y);
+  skip.style.visibility = '';
+
+  for (const el of stack) {
+    // Any image/video in the stack means visually non-white → keep logo white
+    if (el.tagName === 'IMG' || el.tagName === 'VIDEO' || el.tagName === 'CANVAS') {
+      return false;
+    }
+    const bg = window.getComputedStyle(el).backgroundColor;
+    // Skip fully transparent layers (gradient overlays, etc.)
+    if (!bg || bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') continue;
+    // First solid colour found — is it near-white?
+    return isNearWhite(bg);
+  }
+  return false;
+}
+
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [onLight, setOnLight] = useState(false);
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+  const logoRef  = useRef<HTMLImageElement>(null);
+
+  const check = useCallback(() => {
+    const header = headerRef.current;
+    const logo   = logoRef.current;
+    if (!header || !logo) return;
+
+    const r  = logo.getBoundingClientRect();
+    const cx = r.left + r.width  / 2;
+    const cy = r.top  + r.height / 2;
+
+    setOnLight(isSolidWhiteBehind(cx, cy, header));
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(check, 50);
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+    };
+  }, [pathname, check]);
 
   return (
     <>
-      <header className="px-6 py-5 flex justify-between items-center absolute top-0 left-0 right-0 z-40">
+      <header
+        ref={headerRef}
+        className="px-8 py-8 md:px-14 md:py-10 flex justify-between items-center fixed top-0 left-0 right-0 z-40"
+      >
         <Link href="/" className="inline-block">
           <Image
+            ref={logoRef}
             src="/logo.png"
             alt="Atılım Mühendislik"
             width={120}
             height={64}
-            className="h-14 w-auto object-contain"
             priority
+            className="h-14 w-auto object-contain"
+            style={{
+              filter: onLight ? 'brightness(0)' : 'none',
+              transition: 'filter 0.4s ease',
+            }}
           />
         </Link>
 
         <button
           onClick={() => setDrawerOpen(true)}
           aria-label="Menüyü Aç"
-          className="w-12 h-12 flex items-center justify-center hover:bg-white/10 transition rounded text-white"
+          className="flex items-center gap-3 px-2 h-12 rounded hover:bg-black/10"
+          style={{
+            color: onLight ? '#000' : '#fff',
+            transition: 'color 0.4s ease',
+          }}
         >
+          <span className="text-xs tracking-[0.25em] font-light uppercase">Menü</span>
           <Menu className="w-6 h-6" />
         </button>
       </header>
