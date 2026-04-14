@@ -79,44 +79,63 @@ export default function ProjectDetailPage({ params }: PageProps) {
           {/* ── Diğer Projelerimiz ───────────────────────────────────── */}
           {otherProjects.length > 0 && (
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-wide mb-8">
+              <h2
+                className="text-2xl md:text-3xl font-bold tracking-wide mb-8"
+                style={{ fontFamily: 'var(--font-manrope), system-ui, sans-serif' }}
+              >
                 Diğer Projelerimiz
               </h2>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
-              {otherProjects.map((other) => (
-                <Link key={other.slug} href={`/projects/${other.slug}`}>
-                  <div className="relative aspect-[4/3] overflow-hidden group cursor-pointer bg-gray-200">
-                    <Image
-                      src={other.coverImage}
-                      alt={other.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 50vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="grid grid-cols-2 gap-8 md:gap-12 w-full">
+                {otherProjects.map((other) => (
+                  <div key={other.slug} className="pb-5">
+                    <Link href={`/projects/${other.slug}`}>
+                      <div className="relative aspect-square overflow-visible group cursor-pointer">
 
-                    <div className="absolute bottom-4 left-4">
-                      <span className="text-white text-sm md:text-base font-semibold tracking-wider">
-                        {other.name}
-                      </span>
-                    </div>
-
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                      <div className="w-11 h-11 bg-black flex items-center justify-center group-hover:bg-white transition-colors duration-300">
-                        <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
-                          <path
-                            d="M2 1L10 6L2 11V1Z"
-                            fill="white"
-                            className="group-hover:fill-black transition-colors duration-300"
+                        {/* Image container — clips image but not button */}
+                        <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                          <Image
+                            src={other.coverImage}
+                            alt={other.name}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            sizes="(max-width: 768px) 50vw, 50vw"
                           />
-                        </svg>
+
+                          {/* Dark gradient overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                          {/* Project name — bottom center, above button */}
+                          <div className="absolute bottom-12 left-0 right-0 flex justify-center">
+                            <span
+                              className="text-white text-lg md:text-2xl font-semibold tracking-widest uppercase"
+                              style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
+                            >
+                              {other.name}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Arrow button — protrudes from bottom center */}
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
+                          <div className="w-14 h-14 md:w-16 md:h-16 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-[#C8A96E] transition-colors duration-300">
+                            <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
+                              <path
+                                d="M2 8H14M14 8L9 3M14 8L9 13"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+
                       </div>
-                    </div>
+                    </Link>
                   </div>
-                </Link>
-              ))}
-            </div>
+                ))}
+              </div>
             </div>
           )}
 
