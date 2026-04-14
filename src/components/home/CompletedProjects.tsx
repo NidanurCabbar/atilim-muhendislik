@@ -13,7 +13,7 @@ export default function CompletedProjects() {
       </h2>
 
       {/* 2×2 grid */}
-      <div className="grid grid-cols-2 gap-3 md:gap-4">
+      <div className="grid grid-cols-2 gap-8 md:gap-12 w-full">
         {completedProjects.map((project, i) => (
           <motion.div
             key={project.slug}
@@ -21,7 +21,7 @@ export default function CompletedProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="relative aspect-[4/3] overflow-hidden group bg-gray-200"
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl group bg-gray-200"
           >
             <Image
               src={project.coverImage}
