@@ -148,7 +148,7 @@ export default function ProjectImageGrid({
           style={{ gridArea: 'galeri' }}
         >
           <div>
-            <h2 className="font-sans text-4xl font-bold text-black mb-3 leading-tight tracking-tight">
+            <h2 className="font-display text-4xl font-bold text-black mb-3 leading-tight tracking-tight">
               Galeri
             </h2>
             <p className="font-sans text-gray-500 text-sm leading-[1.75] tracking-wide line-clamp-5">
@@ -200,7 +200,7 @@ export default function ProjectImageGrid({
 
         {/* Galeri text */}
         <div className="pt-2">
-          <h2 className="font-sans text-3xl font-bold text-black mb-2 leading-tight tracking-tight">
+          <h2 className="font-display text-3xl font-bold text-black mb-2 leading-tight tracking-tight">
             Galeri
           </h2>
           <p className="font-sans text-gray-500 text-sm leading-[1.75] tracking-wide mb-4">
