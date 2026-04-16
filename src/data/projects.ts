@@ -159,7 +159,7 @@ export const projects: Project[] = [
     name: 'ODTÜ KKTC Kampüsü',
     fullName: 'ODTÜ KKTC Kampüsü',
     tagline: 'Tamamlandı',
-    description: 'İç mekân konforunu artıran akustik çözümler ile yapının teknik performansını ve modern görünümünü pekiştiren mekanik kaplama uygulamaları başarıyla hayata geçirilmiştir.',
+    description: 'İç mekân konforunu artıran çözümler ile yapının teknik performansını ve modern görünümünü pekiştiren mekanik kaplama uygulamaları başarıyla uygulanmıştır.',
     aboutProject: 'ODTÜ KKTC Kampüsü, üniversitenin yurt dışındaki ilk kampüsü olup modern eğitim yapıları ve sosyal alanlarıyla örnek bir eğitim merkezi oluşturmaktadır.',
     status: 'completed',
     location: 'Kuzey Kıbrıs',

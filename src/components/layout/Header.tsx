@@ -42,6 +42,7 @@ function isSolidWhiteBehind(x: number, y: number, skip: HTMLElement): boolean {
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [onLight, setOnLight] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const logoRef  = useRef<HTMLImageElement>(null);
@@ -59,12 +60,16 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 80);
+      check();
+    };
     const timer = setTimeout(check, 50);
-    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', check, { passive: true });
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('scroll', check);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', check);
     };
   }, [pathname, check]);
@@ -73,7 +78,14 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
-        className="px-8 py-8 md:px-14 md:py-10 flex justify-between items-center fixed top-0 left-0 right-0 z-40"
+        className="px-8 py-8 md:px-14 md:py-10 flex justify-between items-center fixed top-0 left-0 right-0 z-40 transition-all duration-500"
+        style={{
+          backdropFilter:       scrolled ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+          backgroundColor:      scrolled ? 'rgba(0,0,0,0.45)' : 'transparent',
+          paddingTop:           scrolled ? '1.25rem' : undefined,
+          paddingBottom:        scrolled ? '1.25rem' : undefined,
+        }}
       >
         <Link href="/" className="inline-block">
           <Image
@@ -85,7 +97,7 @@ export default function Header() {
             priority
             className="h-14 w-auto object-contain"
             style={{
-              filter: onLight ? 'brightness(0)' : 'none',
+              filter: !scrolled && onLight ? 'brightness(0)' : 'none',
               transition: 'filter 0.4s ease',
             }}
           />
@@ -114,7 +126,7 @@ export default function Header() {
             aria-label="Menüyü Aç"
             className="flex items-center gap-3 px-2 h-12 rounded hover:bg-black/10"
             style={{
-              color: onLight ? '#000' : '#fff',
+              color: !scrolled && onLight ? '#000' : '#fff',
               transition: 'color 0.4s ease',
             }}
           >

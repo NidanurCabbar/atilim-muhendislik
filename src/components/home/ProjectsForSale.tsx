@@ -4,20 +4,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { forSaleProjects } from '@/data/projects';
+import RevealText from '@/components/ui/RevealText';
 
 export default function ProjectsForSale() {
   return (
     <section id="projects" className="bg-white px-4 md:px-8 pt-14 pb-20">
 
       {/* Section header */}
-      <h2
-        className="font-display text-center text-3xl md:text-5xl font-semibold tracking-wide text-black mb-14"
-      >
-        Satıştaki Projeler
+      <h2 className="font-display text-center text-3xl md:text-5xl font-semibold tracking-wide text-black mb-14">
+        <RevealText text="Satıştaki Projeler" />
       </h2>
 
-      {/* 2×2 grid */}
-      <div className="grid grid-cols-2 gap-5 md:gap-6 w-full">
+      {/* 2×2 grid — constrained to match "Other Projects" width on the detail page */}
+      <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-2 gap-5 md:gap-8 w-full">
         {forSaleProjects.map((project, i) => (
           <motion.div
             key={project.slug}
@@ -36,7 +36,7 @@ export default function ProjectsForSale() {
                     src={project.coverImage}
                     alt={project.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:[filter:grayscale(0.18)_brightness(0.92)]"
                     sizes="(max-width: 768px) 50vw, 50vw"
                   />
 
@@ -76,6 +76,7 @@ export default function ProjectsForSale() {
             </Link>
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
   );

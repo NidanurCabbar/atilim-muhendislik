@@ -8,7 +8,6 @@ export default function Footer() {
       <section className="bg-white px-4 md:px-8 py-16 border-t border-gray-400">
         <div className="max-w-4xl mx-auto text-center">
 
-          {/* Large heading with inline image */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight flex items-center justify-center flex-wrap gap-x-4 gap-y-2">
             <span>Ayrıcalıklı bir</span>
             <span className="relative inline-block w-24 h-14 md:w-32 md:h-20 rounded-full overflow-hidden align-middle">
@@ -23,12 +22,10 @@ export default function Footer() {
             <span>yaşam sizi bekliyor</span>
           </h2>
 
-          {/* Subtitle */}
           <p className="text-gray-400 text-sm md:text-base mb-10">
             Proje hakkında detaylı bilgi ve özel satış fırsatları için bizimle iletişime geçin.
           </p>
 
-          {/* Two cards */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
             {/* Telefon card */}
@@ -71,118 +68,47 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* ── Dark Footer ────────────────────────────────────────────────── */}
-      <footer id="contact" className="bg-black px-4 md:px-8 pt-14 pb-8">
-        <div className="max-w-5xl mx-auto">
+      {/* ── Slim dark bar ─────────────────────────────────────────────── */}
+      <footer id="contact" className="bg-black px-6 md:px-12 py-7">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
 
-          {/* Logo + tagline */}
-          <div className="mb-10">
-            <Image
-              src="/logo.png"
-              alt="Atılım Mühendislik"
-              width={100}
-              height={40}
-              className="h-10 w-auto object-contain brightness-0 invert mb-4"
-            />
-            <p className="text-gray-500 text-xs tracking-widest uppercase">Changing the</p>
-            <p className="text-white text-3xl font-light mt-0.5">Dynamics</p>
+          <Image
+            src="/logo.png"
+            alt="Atılım Mühendislik"
+            width={90}
+            height={36}
+            className="h-9 w-auto object-contain brightness-0 invert"
+          />
+
+          <div className="flex items-center gap-6 text-sm">
+            <a
+              href={`tel:${contactInfo.phone1.replace(/[\s()]/g, '')}`}
+              className="text-gray-400 hover:text-white transition-colors duration-200 tracking-wide"
+            >
+              {contactInfo.phone1}
+            </a>
+            <span className="text-white/20">|</span>
+            <a
+              href={`https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent('Merhaba, projeleriniz hakkında bilgi almak istiyorum.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors duration-200 tracking-wide"
+            >
+              WhatsApp
+            </a>
+            <span className="text-white/20">|</span>
+            <a
+              href={`mailto:${contactInfo.email}`}
+              className="text-gray-400 hover:text-white transition-colors duration-200 tracking-wide"
+            >
+              {contactInfo.email}
+            </a>
           </div>
 
-          {/* Divider line */}
-          <div className="h-px bg-gradient-to-r from-white/20 via-white/5 to-transparent mb-10" />
+          <span className="text-gray-600 text-xs tracking-wide">
+            © {new Date().getFullYear()} {contactInfo.companyName}
+          </span>
 
-          {/* 3-column links */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-12">
-            <div>
-              <h3 className="text-[10px] text-white/40 tracking-[0.25em] uppercase mb-4">
-                Projeler
-              </h3>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>
-                  <a href="/#projects" className="hover:text-white transition">
-                    Satıştaki Projeler
-                  </a>
-                </li>
-                <li>
-                  <a href="/kurumsal" className="hover:text-white transition">
-                    Hakkımızda
-                  </a>
-                </li>
-                <li>
-                  <a href="/#gallery" className="hover:text-white transition">
-                    Galeri
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-[10px] text-white/40 tracking-[0.25em] uppercase mb-4">
-                İletişim
-              </h3>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>
-                  <a
-                    href={`tel:${contactInfo.phone1.replace(/\s/g, '')}`}
-                    className="hover:text-white transition"
-                  >
-                    {contactInfo.phone1}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`tel:${contactInfo.phone2.replace(/\s/g, '')}`}
-                    className="hover:text-white transition"
-                  >
-                    {contactInfo.phone2}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`https://wa.me/${contactInfo.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition"
-                  >
-                    WhatsApp
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="hover:text-white transition"
-                  >
-                    {contactInfo.email}
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-[10px] text-white/40 tracking-[0.25em] uppercase mb-4">
-                Adres
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {contactInfo.addressTR}
-              </p>
-            </div>
-          </div>
-
-          {/* Red accent line */}
-          <div className="h-[2px] w-full bg-gradient-to-r from-red-600 via-red-500 to-transparent mb-6" />
-
-          {/* Bottom bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-gray-600 text-xs">
-            <span>© {new Date().getFullYear()} {contactInfo.companyName}. Tüm hakları saklıdır.</span>
-            <div className="flex gap-4">
-              <a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
-                Instagram
-              </a>
-              <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
-                LinkedIn
-              </a>
-            </div>
-          </div>
         </div>
       </footer>
     </>

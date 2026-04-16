@@ -43,18 +43,28 @@ export default function ProjectDetailPage({ params }: PageProps) {
       <Header />
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <div className="relative w-full h-[70vh] min-h-[440px] bg-black">
+      <div className="relative w-full h-[100svh] min-h-[560px] bg-black">
         <Image
           src={project.coverImage}
           alt={project.fullName}
           fill
-          className="object-cover opacity-90"
+          className="object-cover"
+          style={{ filter: 'saturate(1.55) contrast(1.08) brightness(1.05) hue-rotate(-5deg)' }}
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/20" />
+        {/* Warm sky tint */}
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(255,130,70,0.10) 0%, rgba(255,110,50,0.05) 40%, transparent 70%)',
+            mixBlendMode: 'overlay',
+          }}
+        />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-r from-black/30 to-transparent" />
 
-        <div className="absolute bottom-8 left-6 md:left-10 right-6 md:right-10">
+        <div className="absolute bottom-8 left-6 md:left-10 right-6 md:right-10 z-[10]">
           <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white mb-3">
             {project.fullName}
           </h1>

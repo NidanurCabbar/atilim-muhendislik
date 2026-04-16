@@ -3,17 +3,19 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { completedProjects } from '@/data/projects';
+import RevealText from '@/components/ui/RevealText';
 
 export default function CompletedProjects() {
   return (
     <section className="bg-white px-4 md:px-8 pb-14">
       {/* Section header */}
       <h2 className="font-display text-center text-3xl md:text-5xl font-semibold tracking-wide text-black mb-14">
-        Tamamlanmış Projeler
+        <RevealText text="Tamamlanmış Projeler" />
       </h2>
 
-      {/* 2×2 grid */}
-      <div className="grid grid-cols-2 gap-8 md:gap-12 w-full">
+      {/* 2×2 grid — same width as Satıştaki Projeler */}
+      <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-2 gap-5 md:gap-8 w-full">
         {completedProjects.map((project, i) => (
           <motion.div
             key={project.slug}
@@ -27,21 +29,21 @@ export default function CompletedProjects() {
               src={project.coverImage}
               alt={project.name}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:[filter:grayscale(0.18)_brightness(0.92)]"
               sizes="(max-width: 768px) 50vw, 50vw"
             />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/40 transition-all duration-500 group-hover:bg-black/65" />
 
-            {/* Title — always visible, shifts up slightly on hover */}
-            <div className="absolute inset-0 flex items-end justify-center px-3 pb-10 transition-all duration-500 group-hover:pb-16">
+            {/* Title — always visible, animates up on hover */}
+            <div className="absolute inset-0 flex items-end justify-center px-3 pb-10 transition-all duration-500 group-hover:pb-[4.5rem]">
               <span className="font-display text-white text-lg md:text-2xl font-semibold text-center leading-tight tracking-wide drop-shadow-lg">
                 {project.name}
               </span>
             </div>
 
-            {/* Subtitle — fades in on hover below the title */}
+            {/* Subtitle — fades in on hover, sits below title */}
             <div className="absolute inset-0 flex items-end justify-center px-4 pb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               <p className="font-sans text-white/85 text-xs md:text-sm text-center leading-snug">
                 {project.description}
@@ -49,6 +51,7 @@ export default function CompletedProjects() {
             </div>
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
   );
