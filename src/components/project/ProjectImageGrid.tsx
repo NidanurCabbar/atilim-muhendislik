@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 import LightboxModal from './LightboxModal';
 
@@ -13,29 +13,135 @@ interface ProjectImageGridProps {
   galleryImages: string[];
 }
 
-// ── Row heights for the bento grid ────────────────────────────────────────────
-const ROW_TOP = 280; // px — map / İç Tasarım row
-const ROW_BOT = 260; // px — floor plan / Galeri text row
-// Peyzaj spans both rows: ROW_TOP + gap(12) + ROW_BOT = 552px total
+// ── Notch geometry (px) ───────────────────────────────────────────────────────
+const OUTER_R = 12;  // outer image card corner radius
+const NOTCH_W = 156; // notch width  — badge (~132px) + 12px gap each side
+const NOTCH_H = 60;  // notch height — badge (36px) + 12px gap each side
+const NOTCH_R = 16;  // corner radius at ALL THREE notch transition points
 
-// ── Small badge overlaid on an image (bottom-right) ───────────────────────────
-function Badge({ text }: { text: string }) {
-  return (
-    <span
-      className={
-        'absolute bottom-2.5 right-2.5 z-10 ' +
-        'bg-black/75 text-white font-sans ' +
-        'text-[9px] font-medium tracking-[0.2em] uppercase ' +
-        'px-3 py-1.5 rounded-md pointer-events-none'
-      }
-    >
-      {text}
-    </span>
-  );
+// Build an SVG mask that is a rounded-rect with a notch carved from bottom-right.
+// Three corners on the notch all use NOTCH_R:
+//   • top-right convex  (right image edge curves left into notch)
+//   • top-left concave  (notch roof curves down — the concave one)
+//   • bottom-left convex (notch left wall curves right to image bottom)
+function buildMaskUrl(W: number, H: number): string {
+  const R = OUTER_R, nW = NOTCH_W, nH = NOTCH_H, nR = NOTCH_R;
+  const d = [
+    `M ${R} 0`,
+    `L ${W - R} 0 Q ${W} 0 ${W} ${R}`,                           // top-right outer corner
+    `L ${W} ${H - nH - nR}`,                                      // right edge → notch start
+    `Q ${W} ${H - nH} ${W - nR} ${H - nH}`,                      // ① top-right convex corner
+    `L ${W - nW + nR} ${H - nH}`,                                 // notch top edge
+    `Q ${W - nW} ${H - nH} ${W - nW} ${H - nH + nR}`,            // ② top-left concave corner
+    `L ${W - nW} ${H - R}`,                                       // notch left wall
+    `Q ${W - nW} ${H} ${W - nW - nR} ${H}`,                      // ③ bottom-left convex corner
+    `L ${R} ${H} Q 0 ${H} 0 ${H - R}`,                           // bottom-left outer corner
+    `L 0 ${R} Q 0 0 ${R} 0 Z`,                                   // left edge + top-left corner
+  ].join(' ');
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><path d="${d}" fill="black"/></svg>`;
+  return `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}")`;
 }
 
-// ── Shared image cell styles ───────────────────────────────────────────────────
-const CELL = 'relative overflow-hidden rounded-2xl bg-gray-100';
+// ── Row heights ───────────────────────────────────────────────────────────────
+const ROW_TOP = 310;
+const ROW_BOT = 280;
+
+// ── ImageCell — applies the SVG mask and renders badge outside the mask ───────
+// The masked inner div clips the image (including corner rounding + notch).
+// The badge is a sibling, outside the mask, visible in the notch area.
+interface ImageCellProps {
+  badgeText: string;
+  gridArea?: string;
+  onClick?: () => void;
+  href?: string;
+  hrefLabel?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  children: ReactNode;
+}
+
+function ImageCell({
+  badgeText, gridArea, onClick, href, hrefLabel, className, style: extraStyle, children,
+}: ImageCellProps) {
+  const maskRef = useRef<HTMLDivElement>(null);
+  const [maskUrl, setMaskUrl] = useState('');
+
+  useEffect(() => {
+    const el = maskRef.current;
+    if (!el) return;
+    const update = () => {
+      const { width: W, height: H } = el.getBoundingClientRect();
+      if (W > 0 && H > 0) setMaskUrl(buildMaskUrl(Math.round(W), Math.round(H)));
+    };
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    update();
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div
+      className={`relative ${onClick ? 'cursor-zoom-in' : ''} ${className ?? ''}`}
+      style={{ gridArea, ...extraStyle }}
+      onClick={onClick}
+    >
+      {/* ── Masked layer: image is clipped here (corners + notch) ── */}
+      <div
+        ref={maskRef}
+        className="absolute inset-0 overflow-hidden rounded-xl"
+        style={
+          maskUrl
+            ? {
+                WebkitMaskImage: maskUrl,
+                maskImage: maskUrl,
+                WebkitMaskSize: '100% 100%',
+                maskSize: '100% 100%',
+              }
+            : undefined
+        }
+      >
+        {children}
+      </div>
+
+      {/* ── Map link overlay (pointer-events cover entire cell) ── */}
+      {href && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-20"
+          aria-label={hrefLabel}
+        />
+      )}
+
+      {/* ── Badge — outside mask, centered within the notch area ── */}
+      <div
+        className="absolute z-30 pointer-events-none flex items-center justify-center"
+        style={{
+          bottom: (NOTCH_H - 36) / 2,  // 12px — centered vertically
+          right:  0,
+          width:  NOTCH_W,
+          height: 36,
+        }}
+      >
+        <span
+          className="font-sans text-[11px] font-medium tracking-[0.14em] uppercase text-white
+            flex items-center justify-center"
+          style={{
+            height:       36,
+            padding:      '0 16px',
+            borderRadius: 8,
+            background:   '#1a1a1a',
+            whiteSpace:   'nowrap',
+          }}
+        >
+          {badgeText}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function ProjectImageGrid({
@@ -54,9 +160,8 @@ export default function ProjectImageGrid({
 
   const embedUrl =
     mapsUrl.replace('https://maps.google.com/?', 'https://maps.google.com/maps?') +
-    '&output=embed&z=13';
+    '&output=embed&z=14';
 
-  // Map iframe: extend beyond container bounds so Google chrome is clipped
   const iframeStyle: React.CSSProperties = {
     position: 'absolute',
     top: -50, left: -15,
@@ -70,88 +175,69 @@ export default function ProjectImageGrid({
     <>
       {/* ── Desktop bento grid (md+) ─────────────────────────────────────── */}
       <div
-        className="hidden md:grid gap-3 mb-14"
+        className="hidden md:grid gap-2 mb-14"
         style={{
-          gridTemplateColumns: '1fr 1.5fr 1.7fr',
+          gridTemplateColumns: '1fr 1fr 1.1fr',
           gridTemplateRows: `${ROW_TOP}px ${ROW_BOT}px`,
           gridTemplateAreas: `
-            "map     peyzaj  ictasarim"
+            "map      peyzaj  ictasarim"
             "katplani peyzaj  galeri"
           `,
         }}
       >
-        {/* Map */}
-        <div className={CELL} style={{ gridArea: 'map' }}>
-          <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} />
-          {/* Transparent overlay — clicking opens Google Maps */}
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute inset-0 z-10"
-            aria-label="Google Maps'te aç"
-          />
-          <Badge text="LOKASYON" />
-        </div>
-
-        {/* Peyzaj — spans both rows via grid-area */}
-        <div
-          className={`${CELL} cursor-zoom-in`}
-          style={{ gridArea: 'peyzaj' }}
-          onClick={() => open(0)}
+        {/* LOKASYON */}
+        <ImageCell
+          badgeText="LOKASYON"
+          gridArea="map"
+          href={mapsUrl}
+          hrefLabel="Google Maps'te aç"
         >
+          <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} />
+        </ImageCell>
+
+        {/* PEYZAJ — spans both rows */}
+        <ImageCell badgeText="PEYZAJ" gridArea="peyzaj" onClick={() => open(0)}>
           <Image
             src={img1}
             alt={`${projectName} peyzaj`}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
-            sizes="35vw"
+            sizes="30vw"
           />
-          <Badge text="PEYZAJ" />
-        </div>
+        </ImageCell>
 
-        {/* İç Tasarım */}
-        <div
-          className={`${CELL} cursor-zoom-in`}
-          style={{ gridArea: 'ictasarim' }}
-          onClick={() => open(2)}
-        >
+        {/* İÇ TASARIM */}
+        <ImageCell badgeText="İÇ TASARIM" gridArea="ictasarim" onClick={() => open(2)}>
           <Image
             src={img3}
             alt={`${projectName} iç tasarım`}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
-            sizes="35vw"
+            sizes="28vw"
           />
-          <Badge text="İÇ TASARIM" />
-        </div>
+        </ImageCell>
 
-        {/* Floor plan */}
-        <div
-          className={`${CELL} cursor-zoom-in`}
-          style={{ gridArea: 'katplani' }}
-          onClick={() => open(1)}
-        >
+        {/* KAT PLANI */}
+        <ImageCell badgeText="KAT PLANI" gridArea="katplani" onClick={() => open(1)}>
           <Image
             src={img2}
             alt={`${projectName} kat planı`}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
-            sizes="20vw"
+            sizes="22vw"
           />
-          <Badge text="KAT PLANI" />
-        </div>
+        </ImageCell>
 
         {/* Galeri text */}
         <div
-          className="flex flex-col justify-between px-1 py-2"
+          className="flex flex-col justify-between px-2 py-1 overflow-hidden"
           style={{ gridArea: 'galeri' }}
         >
-          <div>
-            <h2 className="font-display text-4xl font-bold text-black mb-3 leading-tight tracking-tight">
+          <div className="flex flex-col gap-2 min-h-0 overflow-hidden">
+            <h2 className="font-display text-4xl font-bold text-black leading-tight tracking-tight shrink-0">
               Galeri
             </h2>
-            <p className="font-sans text-gray-500 text-sm leading-[1.75] tracking-wide line-clamp-5">
+            <p className="font-sans text-gray-500 text-xs leading-relaxed overflow-hidden">
               {aboutProject}
             </p>
           </div>
@@ -159,53 +245,38 @@ export default function ProjectImageGrid({
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans inline-flex items-center gap-1.5 text-sm font-semibold group w-fit"
+            className="font-sans inline-flex items-center gap-1.5 text-sm font-semibold group w-fit shrink-0 mt-2"
             style={{ color: '#c0392b' }}
           >
             Galeriyi İncele
-            <span className="text-base leading-none transition-transform group-hover:translate-x-1">
-              →
-            </span>
+            <span className="text-base leading-none transition-transform group-hover:translate-x-1">→</span>
           </a>
         </div>
       </div>
 
       {/* ── Mobile stacked layout ─────────────────────────────────────────── */}
-      <div className="flex flex-col gap-3 md:hidden mb-10">
+      <div className="flex flex-col gap-2 md:hidden mb-10">
 
-        {/* Map */}
-        <div className={CELL} style={{ height: 200 }}>
+        <ImageCell badgeText="LOKASYON" href={mapsUrl} hrefLabel="Google Maps'te aç" style={{ height: 190 }}>
           <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} />
-          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" />
-          <Badge text="LOKASYON" />
-        </div>
+        </ImageCell>
 
-        {/* Peyzaj */}
-        <div className={`${CELL} aspect-[16/9] cursor-zoom-in`} onClick={() => open(0)}>
+        <ImageCell badgeText="PEYZAJ" onClick={() => open(0)} className="aspect-[16/9]">
           <Image src={img1} alt="Peyzaj" fill className="object-cover" sizes="100vw" />
-          <Badge text="PEYZAJ" />
-        </div>
+        </ImageCell>
 
-        {/* Floor plan + İç Tasarım side by side */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className={`${CELL} aspect-square cursor-zoom-in`} onClick={() => open(1)}>
+        <div className="grid grid-cols-2 gap-2">
+          <ImageCell badgeText="KAT PLANI" onClick={() => open(1)} className="aspect-square">
             <Image src={img2} alt="Kat Planı" fill className="object-cover" sizes="50vw" />
-            <Badge text="KAT PLANI" />
-          </div>
-          <div className={`${CELL} aspect-square cursor-zoom-in`} onClick={() => open(2)}>
+          </ImageCell>
+          <ImageCell badgeText="İÇ TASARIM" onClick={() => open(2)} className="aspect-square">
             <Image src={img3} alt="İç Tasarım" fill className="object-cover" sizes="50vw" />
-            <Badge text="İÇ TASARIM" />
-          </div>
+          </ImageCell>
         </div>
 
-        {/* Galeri text */}
-        <div className="pt-2">
-          <h2 className="font-display text-3xl font-bold text-black mb-2 leading-tight tracking-tight">
-            Galeri
-          </h2>
-          <p className="font-sans text-gray-500 text-sm leading-[1.75] tracking-wide mb-4">
-            {aboutProject}
-          </p>
+        <div className="pt-2 flex flex-col gap-2">
+          <h2 className="font-display text-3xl font-bold text-black leading-tight tracking-tight">Galeri</h2>
+          <p className="font-sans text-gray-500 text-sm leading-relaxed">{aboutProject}</p>
           <a
             href={whatsappHref}
             target="_blank"

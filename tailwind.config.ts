@@ -21,8 +21,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans:  ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
+        sans:    ["'Manrope'", 'system-ui', 'sans-serif'],
+        display: ["'Clash Display'", 'system-ui', 'sans-serif'],
+        serif:   ['var(--font-playfair)', 'Georgia', 'serif'],
       },
       animation: {
         'fade-in':      'fadeIn 0.6s ease-out forwards',

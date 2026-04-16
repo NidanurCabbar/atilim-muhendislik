@@ -8,7 +8,7 @@ export default function CompletedProjects() {
   return (
     <section className="bg-white px-4 md:px-8 pb-14">
       {/* Section header */}
-      <h2 className="text-center text-sm font-semibold tracking-[0.2em] uppercase text-black mb-8">
+      <h2 className="font-display text-center text-3xl md:text-5xl font-semibold tracking-wide text-black mb-14">
         Tamamlanmış Projeler
       </h2>
 
@@ -31,26 +31,21 @@ export default function CompletedProjects() {
               sizes="(max-width: 768px) 50vw, 50vw"
             />
 
-            {/* Default overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/40 transition-all duration-500 group-hover:bg-black/65" />
 
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end px-4 py-4 md:py-5">
-              <span className="text-white text-sm md:text-base font-semibold tracking-wide mb-1">
+            {/* Title — always visible, shifts up slightly on hover */}
+            <div className="absolute inset-0 flex items-end justify-center px-3 pb-10 transition-all duration-500 group-hover:pb-16">
+              <span className="font-display text-white text-lg md:text-2xl font-semibold text-center leading-tight tracking-wide drop-shadow-lg">
                 {project.name}
               </span>
-              {project.description && (
-                <p className="text-white/85 text-xs md:text-sm leading-snug">
-                  {project.description}
-                </p>
-              )}
             </div>
 
-            {/* Caption (hidden on hover) */}
-            <div className="absolute bottom-0 left-0 right-0 px-4 py-3 group-hover:opacity-0 transition-opacity duration-500">
-              <span className="text-white text-sm md:text-base font-medium tracking-wide">
-                {project.name}
-              </span>
+            {/* Subtitle — fades in on hover below the title */}
+            <div className="absolute inset-0 flex items-end justify-center px-4 pb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <p className="font-sans text-white/85 text-xs md:text-sm text-center leading-snug">
+                {project.description}
+              </p>
             </div>
           </motion.div>
         ))}

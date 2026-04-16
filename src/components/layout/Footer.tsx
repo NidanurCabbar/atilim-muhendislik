@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       {/* ── CTA Banner ─────────────────────────────────────────────────── */}
-      <section className="bg-white px-4 md:px-8 py-16 border-t border-gray-100">
+      <section className="bg-white px-4 md:px-8 py-16 border-t border-gray-400">
         <div className="max-w-4xl mx-auto text-center">
 
           {/* Large heading with inline image */}

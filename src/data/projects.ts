@@ -43,8 +43,8 @@ export const projects: Project[] = [
     coverImage: '/images/projects/trio-1-cover-v2.png',
     gallery: [
       '/images/projects/trio-1-cover-v2.png',
-      '/images/projects/trio-1-kat-plani.png',                                      // kat planı — add your floor plan image here
-      '/images/projects/trio-1-ic-tasarim.png',                                     // iç tasarım — add your luxury interior image here
+      'https://images.pexels.com/photos/271667/pexels-photo-271667.jpeg?auto=compress&cs=tinysrgb&w=1200',  // kat planı — replace with actual 3D floor plan render
+      'https://images.pexels.com/photos/19689230/pexels-photo-19689230.jpeg?auto=compress&cs=tinysrgb&w=1200', // iç tasarım — replace with dark luxury marble interior
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     name: '360 AVM',
     fullName: '360 AVM',
     tagline: 'Tamamlandı',
-    description: '360 Alışveriş Merkezi projesi.',
+    description: 'Yapının modern mimari kimliğini ve teknik dayanıklılığını pekiştiren taş ve mekanik kaplama uygulamaları titizlikle tamamlanmıştır.',
     aboutProject: 'Modern mimari anlayışıyla tasarlanan 360 AVM, bölgenin ticari yaşamına katkı sağlayan büyük ölçekli bir alışveriş merkezi projesidir.',
     status: 'completed',
     location: 'Ankara',
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     name: 'ODTÜ KKTC Kampüsü',
     fullName: 'ODTÜ KKTC Kampüsü',
     tagline: 'Tamamlandı',
-    description: 'ODTÜ Kuzey Kıbrıs Türk Cumhuriyeti Kampüsü inşaat projesi.',
+    description: 'İç mekân konforunu artıran akustik çözümler ile yapının teknik performansını ve modern görünümünü pekiştiren mekanik kaplama uygulamaları başarıyla hayata geçirilmiştir.',
     aboutProject: 'ODTÜ KKTC Kampüsü, üniversitenin yurt dışındaki ilk kampüsü olup modern eğitim yapıları ve sosyal alanlarıyla örnek bir eğitim merkezi oluşturmaktadır.',
     status: 'completed',
     location: 'Kuzey Kıbrıs',
@@ -177,7 +177,7 @@ export const projects: Project[] = [
     name: 'Erifsha International Airport',
     fullName: 'Erifsha International Airport',
     tagline: 'Tamamlandı',
-    description: 'Erifsha Uluslararası Havalimanı terminal ve apron inşaat projesi.',
+    description: 'Yapının mimari estetiğini ve teknik ömrünü güçlendiren taş kaplama, mekanik kaplama, izolasyon ve çevre düzenlemesi çalışmaları titizlikle tamamlanmıştır.',
     aboutProject: 'Erifsha Uluslararası Havalimanı, modern terminal binası ve altyapısıyla bölgenin hava ulaşımına önemli katkılar sağlayan büyük ölçekli bir havalimanı projesidir.',
     status: 'completed',
     location: 'Uluslararası',
@@ -201,24 +201,28 @@ export const heroSlides = [
     tagline: 'Hayalinizdeki Villa',
     projectName: 'TRIO-1',
     projectSlug: 'trio-1',
+    subtitle: 'İncek Trio -1 ile modern mimari ve prestijli bir yaşamın merkezinde yerinizi alın.',
   },
   {
     image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=90',
     tagline: 'Prestijin Yeni Tanımı',
     projectName: 'TRİO-2',
     projectSlug: 'trio-2',
+    subtitle: 'Modern yaşam anlayışını yüksek kaliteli malzeme ve özgün mimariyle buluşturuyor.',
   },
   {
     image: '/images/hero/cover-image-3.png',
     tagline: 'Benzersiz Bir Deneyim',
     projectName: 'LABRİS',
     projectSlug: 'labris',
+    subtitle: 'Hayallerinizdeki yaşam standartlarına bugün adım atın ve yerinizi hemen ayırtın.',
   },
   {
     image: '/images/hero/cover-image-4.png',
     tagline: 'Prestijin Yeni İmzası',
     projectName: 'İLKO',
     projectSlug: 'ilko',
+    subtitle: 'Bitişik nizam villada, hayallerinizdeki prestijli yaşam standartlarına bugün adım atın ve yerinizi hemen ayırtın.',
   },
 ];
 

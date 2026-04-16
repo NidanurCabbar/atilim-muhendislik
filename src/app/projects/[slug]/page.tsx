@@ -65,8 +65,8 @@ export default function ProjectDetailPage({ params }: PageProps) {
       </div>
 
       {/* ── Content ──────────────────────────────────────────────────── */}
-      <section className="bg-white px-4 md:px-8 py-10">
-        <div className="max-w-5xl mx-auto">
+      <section className="bg-white px-4 md:px-6 py-10">
+        <div className="max-w-7xl mx-auto">
           <ProjectImageGrid
             images={[img1, img2, img3]}
             projectName={project.name}
@@ -80,8 +80,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
           {otherProjects.length > 0 && (
             <div>
               <h2
-                className="text-2xl md:text-3xl font-bold tracking-wide mb-8"
-                style={{ fontFamily: 'var(--font-manrope), system-ui, sans-serif' }}
+                className="font-display text-2xl md:text-3xl font-bold tracking-wide mb-8"
               >
                 Diğer Projelerimiz
               </h2>

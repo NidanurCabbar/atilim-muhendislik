@@ -23,7 +23,7 @@ export default function RelatedProjects({ projects }: RelatedProjectsProps) {
           className="mb-10"
         >
           <p className="text-brand-gold text-xs tracking-[0.3em] uppercase mb-3">Diğer Fırsatlar</p>
-          <h2 className="font-serif text-2xl sm:text-3xl text-white">Satıştaki Diğer Projeler</h2>
+          <h2 className="font-display text-2xl sm:text-3xl text-white">Satıştaki Diğer Projeler</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -46,7 +46,7 @@ export default function RelatedProjects({ projects }: RelatedProjectsProps) {
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent" />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-serif text-lg text-white group-hover:text-brand-gold transition-colors">
+                  <h3 className="font-display text-lg text-white group-hover:text-brand-gold transition-colors">
                     {project.name}
                   </h3>
                   <p className="text-brand-gray text-xs mt-1">{project.location}</p>

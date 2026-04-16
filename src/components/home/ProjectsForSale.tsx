@@ -7,18 +7,17 @@ import { forSaleProjects } from '@/data/projects';
 
 export default function ProjectsForSale() {
   return (
-    <section id="projects" className="bg-white px-4 md:px-8 py-14">
+    <section id="projects" className="bg-white px-4 md:px-8 pt-14 pb-20">
 
       {/* Section header */}
       <h2
-        className="text-center text-2xl md:text-3xl font-bold tracking-wide text-black mb-8"
-        style={{ fontFamily: 'var(--font-manrope), system-ui, sans-serif' }}
+        className="font-display text-center text-3xl md:text-5xl font-semibold tracking-wide text-black mb-14"
       >
         Satıştaki Projeler
       </h2>
 
       {/* 2×2 grid */}
-      <div className="grid grid-cols-2 gap-8 md:gap-12 w-full">
+      <div className="grid grid-cols-2 gap-5 md:gap-6 w-full">
         {forSaleProjects.map((project, i) => (
           <motion.div
             key={project.slug}
@@ -26,7 +25,7 @@ export default function ProjectsForSale() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="pb-5"
+            className="pb-8"
           >
             <Link href={`/projects/${project.slug}`}>
               <div className="relative aspect-square overflow-visible group cursor-pointer">
@@ -55,9 +54,12 @@ export default function ProjectsForSale() {
                   </div>
                 </div>
 
-                {/* Arrow button — protrudes from bottom center */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-[#C8A96E] transition-colors duration-300">
+                {/* Arrow button — straddles bottom edge of card */}
+                <div
+                  className="absolute left-1/2 z-10"
+                  style={{ bottom: -28, transform: 'translateX(-50%)' }}
+                >
+                  <div className="w-14 h-14 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-[#C8A96E] transition-colors duration-300">
                     <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
                       <path
                         d="M2 8H14M14 8L9 3M14 8L9 13"

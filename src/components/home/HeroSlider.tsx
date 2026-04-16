@@ -66,15 +66,18 @@ export default function HeroSlider() {
             transition={{ duration: 0.55, ease: 'easeOut' }}
             className="mb-6"
           >
-            <h2 className="text-4xl md:text-6xl font-bold tracking-wide text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-normal tracking-wide text-white leading-tight">
               {slide.tagline}{' '}
-              <span className="text-white">{slide.projectName}</span>
+              <span className="font-bold">{slide.projectName}</span>
             </h2>
+            <p className="font-sans mt-2 text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
+              {slide.subtitle}
+            </p>
           </motion.div>
         </AnimatePresence>
 
-        {/* Progress lines */}
-        <div className="flex items-end gap-2">
+        {/* Progress lines — centered */}
+        <div className="flex items-end justify-center gap-2">
           {heroSlides.map((s, i) => (
             <button
               key={i}

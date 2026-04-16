@@ -23,7 +23,7 @@ export default function StatsBar() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="flex flex-col items-center text-center"
             >
-              <span className="font-serif text-3xl sm:text-4xl text-brand-gold font-bold">
+              <span className="font-display text-3xl sm:text-4xl text-brand-gold font-bold">
                 {stat.value}
               </span>
               <span className="text-brand-gray text-xs sm:text-sm mt-1 tracking-wider">

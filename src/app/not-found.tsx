@@ -7,7 +7,7 @@ export default function NotFound() {
       <Header />
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <p className="text-brand-gold text-xs tracking-[0.3em] uppercase mb-4">404</p>
-        <h1 className="font-serif text-4xl text-white mb-4">Sayfa Bulunamadı</h1>
+        <h1 className="font-display text-4xl text-white mb-4">Sayfa Bulunamadı</h1>
         <p className="text-brand-gray mb-8">Aradığınız sayfa mevcut değil veya taşınmış olabilir.</p>
         <Link
           href="/"
