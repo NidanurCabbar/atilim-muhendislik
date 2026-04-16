@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import HeroSlider from '@/components/home/HeroSlider';
 import ProjectsForSale from '@/components/home/ProjectsForSale';
 import CompletedProjects from '@/components/home/CompletedProjects';
+import ContactCta from '@/components/home/ContactCta';
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <HeroSlider />
       <ProjectsForSale />
       <CompletedProjects />
+      <ContactCta />
       <Footer />
     </main>
   );

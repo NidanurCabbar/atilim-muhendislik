@@ -158,9 +158,10 @@ export default function ProjectImageGrid({
 
   const [img1, img2, img3] = images;
 
-  const embedUrl =
-    mapsUrl.replace('https://maps.google.com/?', 'https://maps.google.com/maps?') +
-    '&output=embed&z=14';
+  // Extract the `q` param from the mapsUrl and build a proper embed URL.
+  // Using www.google.com/maps avoids X-Frame-Options blocks on maps.google.com.
+  const rawQ = new URL(mapsUrl).searchParams.get('q') ?? '';
+  const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(rawQ)}&output=embed&z=15&hl=tr`;
 
   const iframeStyle: React.CSSProperties = {
     position: 'absolute',
@@ -192,7 +193,7 @@ export default function ProjectImageGrid({
           href={mapsUrl}
           hrefLabel="Google Maps'te aç"
         >
-          <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} />
+          <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} referrerPolicy="no-referrer-when-downgrade" />
         </ImageCell>
 
         {/* PEYZAJ — spans both rows */}
@@ -230,27 +231,23 @@ export default function ProjectImageGrid({
 
         {/* Galeri text */}
         <div
-          className="flex flex-col justify-between px-2 py-1 overflow-hidden"
+          className="flex flex-col gap-3 px-2 py-1 overflow-hidden"
           style={{ gridArea: 'galeri' }}
         >
-          <div className="flex flex-col gap-2 min-h-0 overflow-hidden">
-            <h2 className="font-display text-4xl font-bold text-black leading-tight tracking-tight shrink-0">
-              Galeri
-            </h2>
-            <p className="font-sans text-gray-500 text-xs leading-relaxed overflow-hidden">
-              {aboutProject}
-            </p>
-          </div>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-sans inline-flex items-center gap-1.5 text-sm font-semibold group w-fit shrink-0 mt-2"
+          <h2 className="font-display text-4xl font-bold text-black leading-tight tracking-tight shrink-0">
+            Galeri
+          </h2>
+          <p className="font-sans text-gray-500 text-xs leading-relaxed overflow-hidden">
+            {aboutProject}
+          </p>
+          <button
+            onClick={() => open(0)}
+            className="font-sans inline-flex items-center gap-1.5 text-sm font-semibold group w-fit shrink-0 cursor-pointer"
             style={{ color: '#c0392b' }}
           >
             Galeriyi İncele
             <span className="text-base leading-none transition-transform group-hover:translate-x-1">→</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -258,7 +255,7 @@ export default function ProjectImageGrid({
       <div className="flex flex-col gap-2 md:hidden mb-10">
 
         <ImageCell badgeText="LOKASYON" href={mapsUrl} hrefLabel="Google Maps'te aç" style={{ height: 190 }}>
-          <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} />
+          <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} referrerPolicy="no-referrer-when-downgrade" />
         </ImageCell>
 
         <ImageCell badgeText="PEYZAJ" onClick={() => open(0)} className="aspect-[16/9]">
@@ -277,15 +274,13 @@ export default function ProjectImageGrid({
         <div className="pt-2 flex flex-col gap-2">
           <h2 className="font-display text-3xl font-bold text-black leading-tight tracking-tight">Galeri</h2>
           <p className="font-sans text-gray-500 text-sm leading-relaxed">{aboutProject}</p>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-sans inline-flex items-center gap-1.5 text-sm font-semibold"
+          <button
+            onClick={() => open(0)}
+            className="font-sans inline-flex items-center gap-1.5 text-sm font-semibold cursor-pointer"
             style={{ color: '#c0392b' }}
           >
             Galeriyi İncele <span className="text-base leading-none">→</span>
-          </a>
+          </button>
         </div>
       </div>
 
