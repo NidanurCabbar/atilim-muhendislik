@@ -108,9 +108,9 @@ export const projects: Project[] = [
     area: '15.000 m²',
     year: '2024–2026',
     mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
-    coverImage: '/images/projects/ilko-cover.png',
+    coverImage: '/images/projects/ilko-cover-v2.png',
     gallery: [
-      '/images/projects/ilko-cover.png',
+      '/images/projects/ilko-cover-v2.png',
       'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80',
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
@@ -199,7 +199,7 @@ export const heroSlides = [
   {
     image: '/images/projects/trio-1-cover-v2.png',
     tagline: 'Hayalinizdeki Villa',
-    projectName: 'TRIO-1',
+    projectName: 'TRIO -1',
     projectSlug: 'trio-1',
     subtitle: 'İncek Trio -1 ile modern mimari ve prestijli bir yaşamın merkezinde yerinizi alın.',
   },
@@ -218,7 +218,7 @@ export const heroSlides = [
     subtitle: 'Hayallerinizdeki yaşam standartlarına bugün adım atın ve yerinizi hemen ayırtın.',
   },
   {
-    image: '/images/hero/cover-image-4.png',
+    image: '/images/projects/ilko-cover-v2.png',
     tagline: 'Prestijin Yeni İmzası',
     projectName: 'İLKO',
     projectSlug: 'ilko',

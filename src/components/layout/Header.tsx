@@ -91,18 +91,37 @@ export default function Header() {
           />
         </Link>
 
-        <button
-          onClick={() => setDrawerOpen(true)}
-          aria-label="Menüyü Aç"
-          className="flex items-center gap-3 px-2 h-12 rounded hover:bg-black/10"
-          style={{
-            color: onLight ? '#000' : '#fff',
-            transition: 'color 0.4s ease',
-          }}
-        >
-          <span className="text-xs tracking-[0.25em] font-light uppercase">Menü</span>
-          <Menu className="w-6 h-6" />
-        </button>
+        <div className="flex items-center gap-3">
+          {/* İletişim pill button */}
+          <Link
+            href="#contact"
+            className="hidden md:flex items-center gap-2 px-5 h-10 rounded-full text-xs tracking-[0.2em] font-medium uppercase transition-opacity hover:opacity-80"
+            style={{
+              background: onLight ? '#111' : 'rgba(255,255,255,0.12)',
+              color: onLight ? '#fff' : '#fff',
+              backdropFilter: 'blur(8px)',
+              border: onLight ? 'none' : '1px solid rgba(255,255,255,0.25)',
+              transition: 'background 0.4s ease, border 0.4s ease',
+            }}
+          >
+            İletişim
+            <span className="text-sm leading-none">→</span>
+          </Link>
+
+          {/* Hamburger menu */}
+          <button
+            onClick={() => setDrawerOpen(true)}
+            aria-label="Menüyü Aç"
+            className="flex items-center gap-3 px-2 h-12 rounded hover:bg-black/10"
+            style={{
+              color: onLight ? '#000' : '#fff',
+              transition: 'color 0.4s ease',
+            }}
+          >
+            <span className="text-xs tracking-[0.25em] font-light uppercase">Menü</span>
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
       </header>
 
       <DrawerMenu open={drawerOpen} onClose={() => setDrawerOpen(false)} />
