@@ -45,18 +45,27 @@ export default function HeroSlider() {
             alt={s.projectName}
             fill
             className="object-cover"
+            style={{ filter: 'saturate(1.55) contrast(1.08) brightness(1.05) hue-rotate(-5deg)' }}
             priority={i === 0}
             sizes="100vw"
           />
         </div>
       ))}
 
+      {/* Warm sky tint — boosts sunset orange/pink tones */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(255,130,70,0.10) 0%, rgba(255,110,50,0.05) 40%, transparent 70%)',
+          mixBlendMode: 'overlay',
+        }}
+      />
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-r from-black/20 to-transparent" />
 
       {/* Bottom content */}
-      <div className="absolute bottom-10 left-6 right-6 md:left-10 md:right-10 z-10">
+      <div className="absolute bottom-10 left-6 right-6 md:left-10 md:right-10 z-[10]">
         <AnimatePresence mode="wait">
           <motion.div
             key={`content-${current}`}
