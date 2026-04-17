@@ -36,16 +36,16 @@ export default function CompletedProjects() {
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/40 transition-all duration-500 group-hover:bg-black/65" />
 
-            {/* Title — always visible, animates up on hover */}
-            <div className="absolute inset-0 flex items-end justify-center px-3 pb-10 transition-all duration-500 group-hover:pb-[4.5rem]">
+            {/* Title — always visible, animates up on hover (desktop only) */}
+            <div className="absolute inset-0 flex items-end justify-center px-3 pb-10 transition-all duration-500 md:group-hover:pb-[4.5rem]">
               <span className="font-display text-white text-lg md:text-2xl font-semibold text-center leading-tight tracking-wide drop-shadow-lg">
                 {project.name}
               </span>
             </div>
 
-            {/* Subtitle — fades in on hover, sits below title */}
-            <div className="absolute inset-0 flex items-end justify-center px-4 pb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <p className="font-sans text-white/85 text-xs md:text-sm text-center leading-snug">
+            {/* Subtitle — desktop only, fades in on hover */}
+            <div className="hidden md:flex absolute inset-0 items-end justify-center px-4 pb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <p className="font-sans text-white/85 text-sm text-center leading-snug">
                 {project.description}
               </p>
             </div>
