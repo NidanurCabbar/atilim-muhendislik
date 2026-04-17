@@ -78,7 +78,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
               );
             })()}
           </h1>
-          <p className="text-white/70 text-sm leading-relaxed max-w-2xl">
+          <p className="text-white/70 text-sm leading-relaxed">
             {project.aboutProject}
           </p>
         </div>
