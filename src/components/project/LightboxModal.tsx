@@ -125,7 +125,7 @@ export default function LightboxModal({
 
         {/* Thumbnails */}
         {images.length > 1 && (
-          <div className="flex gap-2 px-6 py-4 overflow-x-auto border-t border-white/10">
+          <div className="flex gap-2 px-6 py-4 overflow-x-auto scrollbar-hide border-t border-white/10">
             {images.map((img, i) => (
               <button
                 key={i}

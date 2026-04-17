@@ -28,6 +28,14 @@
 
 /* ── Utilities ── */
 @layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   .text-gold    { color: #C8A96E; }
   .bg-gold      { background-color: #C8A96E; }
   .border-gold  { border-color: #C8A96E; }
