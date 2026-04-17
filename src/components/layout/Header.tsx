@@ -107,7 +107,7 @@ export default function Header() {
           {/* İletişim pill button */}
           <Link
             href="/iletisim"
-            className="hidden md:flex items-center gap-2 px-5 h-10 rounded-full text-xs tracking-[0.2em] font-medium uppercase transition-opacity hover:opacity-80"
+            className="flex items-center gap-2 px-4 md:px-5 h-9 md:h-10 rounded-full text-xs tracking-[0.2em] font-medium uppercase transition-opacity hover:opacity-80"
             style={{
               background: onLight ? '#111' : 'rgba(255,255,255,0.12)',
               color: onLight ? '#fff' : '#fff',
