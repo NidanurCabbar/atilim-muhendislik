@@ -1,16 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
-import { contactInfo } from '@/data/projects';
+import { contactInfo, projects } from '@/data/projects';
+import LightboxModal from '@/components/project/LightboxModal';
 
 interface DrawerMenuProps {
   open: boolean;
   onClose: () => void;
 }
+
+const allImages = projects.flatMap((p) => p.gallery);
+const allLabels = projects.flatMap((p) => p.gallery.map(() => p.name));
 
 const navLinks = [
   { label: 'PROJELERİMİZ', href: '/#projects' },
@@ -20,6 +24,8 @@ const navLinks = [
 ];
 
 export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
+  const [galleryOpen, setGalleryOpen] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -139,14 +145,24 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.07, duration: 0.35 }}
                     >
-                      <Link
-                        href={link.href}
-                        onClick={onClose}
-                        className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-widest text-white hover:text-white/40 transition-colors duration-200"
-                        style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
-                      >
-                        {link.label}
-                      </Link>
+                      {link.label === 'GALERİ' ? (
+                        <button
+                          onClick={() => { onClose(); setTimeout(() => setGalleryOpen(true), 300); }}
+                          className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-widest text-white hover:text-white/40 transition-colors duration-200"
+                          style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
+                        >
+                          {link.label}
+                        </button>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={onClose}
+                          className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-widest text-white hover:text-white/40 transition-colors duration-200"
+                          style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </motion.li>
                   ))}
                 </ul>
@@ -154,6 +170,13 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
             </div>
           </div>
         </motion.div>
+      )}
+      {galleryOpen && (
+        <LightboxModal
+          images={allImages}
+          labels={allLabels}
+          onClose={() => setGalleryOpen(false)}
+        />
       )}
     </AnimatePresence>
   );
