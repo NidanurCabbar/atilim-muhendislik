@@ -106,7 +106,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {/* İletişim pill button */}
           <Link
-            href="#contact"
+            href="/iletisim"
             className="hidden md:flex items-center gap-2 px-5 h-10 rounded-full text-xs tracking-[0.2em] font-medium uppercase transition-opacity hover:opacity-80"
             style={{
               background: onLight ? '#111' : 'rgba(255,255,255,0.12)',

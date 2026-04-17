@@ -20,7 +20,7 @@ const navLinks = [
   { label: 'PROJELERİMİZ', href: '/#projects' },
   { label: 'GALERİ',        href: '/#gallery' },
   { label: 'HAKKIMIZDA',    href: '/kurumsal' },
-  { label: 'İLETİŞİM',     href: '/#contact' },
+  { label: 'İLETİŞİM',     href: '/iletisim' },
 ];
 
 export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
