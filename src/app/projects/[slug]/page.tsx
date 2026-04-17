@@ -65,8 +65,18 @@ export default function ProjectDetailPage({ params }: PageProps) {
         <div className="absolute inset-0 z-[2] bg-gradient-to-r from-black/30 to-transparent" />
 
         <div className="absolute bottom-8 left-6 md:left-10 right-6 md:right-10 z-[10]">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white mb-3">
-            {project.fullName}
+          <h1 className="text-3xl md:text-5xl tracking-wider text-white mb-3">
+            {(() => {
+              const [first, ...rest] = project.fullName.split(' ');
+              return (
+                <>
+                  <span className="font-bold">{first}</span>
+                  {rest.length > 0 && (
+                    <span className="font-light ml-2">{rest.join(' ')}</span>
+                  )}
+                </>
+              );
+            })()}
           </h1>
           <p className="text-white/70 text-sm leading-relaxed max-w-2xl">
             {project.description}

@@ -34,7 +34,7 @@ export const projects: Project[] = [
     description:
       'TRIO-1 İncek, Ankara\'nın en prestijli bölgesinde, doğayla iç içe villa yaşamını modern mimariyle buluşturan eşsiz bir konut projesidir.',
     aboutProject:
-      'İncek\'in değer kazanan lokasyonunda yer alan Trio-1 İncek; çevresindeki sosyal olanaklar ve modern yaşam standartlarıyla hem yaşam hem de yatırım için güçlü bir alternatif sunuyor. Geniş ve kullanışlı yaşam alanları, estetik mimari detaylar ve çağdaş konseptiyle Trio-1 İncek, kendine özgü bir kent yaşamı arayanlar için özenle tasarlandı.',
+      'İncek Trio -1, İncek\'in prestijli yaşam bölgesinde, modern şehir hayatını doğayla dengeli bir şekilde buluşturan özel bir yaşam anlayışı sunuyor. Seçkin konumu ve çağdaş mimarisiyle tasarlanan İncek Trio -1, konforu, estetiği ve fonksiyonelliği bir araya getirerek yaşam kalitesini yeni bir seviyeye taşıyor. Bu özel projede; modern yaşamın tüm gereksinimlerine cevap veren mimari çözümler, ferah yaşam alanları ve günlük hayatı kolaylaştıran detaylar ön planda tutuluyor. Şehrin dinamizmini yaşarken aynı zamanda sakin ve huzurlu bir atmosfere sahip olmak isteyenler için tasarlanan İncek Trio -1, yaşamın her anını değerli kılan bir deneyim sunuyor.',
     status: 'for-sale',
     location: 'İncek, Ankara',
     area: '18.500 m²',
