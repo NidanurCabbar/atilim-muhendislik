@@ -79,7 +79,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             })()}
           </h1>
           <p className="text-white/70 text-sm leading-relaxed max-w-2xl">
-            {project.description}
+            {project.aboutProject}
           </p>
         </div>
       </div>
