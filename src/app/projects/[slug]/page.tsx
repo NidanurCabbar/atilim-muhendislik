@@ -90,7 +90,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
           <ProjectImageGrid
             images={[img1, img2, img3]}
             projectName={project.name}
-            aboutProject={project.aboutProject}
+            aboutProject={project.galleryDescription ?? project.aboutProject}
             mapsUrl={project.mapsUrl}
             whatsappHref={`https://wa.me/${contactInfo.whatsapp}?text=${whatsappMsg}`}
             galleryImages={project.gallery}
