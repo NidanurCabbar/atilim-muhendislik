@@ -149,7 +149,7 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
                       {link.label === 'GALERİ' ? (
                         <button
                           onClick={() => { onClose(); setTimeout(() => setGalleryOpen(true), 300); }}
-                          className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-widest text-white hover:text-white/40 transition-colors duration-200"
+                          className="block w-full text-right text-4xl md:text-5xl lg:text-6xl font-light tracking-widest text-white hover:text-white/40 transition-colors duration-200"
                           style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
                         >
                           {link.label}
