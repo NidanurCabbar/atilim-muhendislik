@@ -109,7 +109,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
                 {otherProjects.map((other) => (
                   <div key={other.slug} className="pb-5">
                     <Link href={`/projects/${other.slug}`}>
-                      <div className="relative aspect-square overflow-visible group cursor-pointer">
+                      <div className="relative h-64 overflow-visible group cursor-pointer">
 
                         {/* Image container — clips image but not button */}
                         <div className="relative w-full h-full overflow-hidden rounded-2xl">
