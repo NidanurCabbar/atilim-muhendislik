@@ -58,7 +58,7 @@ export default function LightboxModal({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] bg-black/95 flex flex-col"
+        className="fixed inset-0 z-[100] bg-black flex flex-col"
       >
         {/* Top bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
