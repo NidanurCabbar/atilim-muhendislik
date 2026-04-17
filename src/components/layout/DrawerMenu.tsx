@@ -38,6 +38,7 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
   }, [onClose]);
 
   return (
+    <>
     <AnimatePresence>
       {open && (
         <motion.div
@@ -171,13 +172,14 @@ export default function DrawerMenu({ open, onClose }: DrawerMenuProps) {
           </div>
         </motion.div>
       )}
-      {galleryOpen && (
-        <LightboxModal
-          images={allImages}
-          labels={allLabels}
-          onClose={() => setGalleryOpen(false)}
-        />
-      )}
     </AnimatePresence>
+    {galleryOpen && (
+      <LightboxModal
+        images={allImages}
+        labels={allLabels}
+        onClose={() => setGalleryOpen(false)}
+      />
+    )}
+    </>
   );
 }
