@@ -7,12 +7,14 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface LightboxModalProps {
   images: string[];
+  labels?: string[];
   initialIndex?: number;
   onClose: () => void;
 }
 
 export default function LightboxModal({
   images,
+  labels,
   initialIndex = 0,
   onClose,
 }: LightboxModalProps) {
@@ -60,9 +62,16 @@ export default function LightboxModal({
       >
         {/* Top bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-          <span className="text-white/50 text-sm">
-            {current + 1} / {images.length}
-          </span>
+          <div className="flex items-center gap-3">
+            {labels?.[current] && (
+              <span className="text-[10px] tracking-[0.25em] uppercase text-white/40 font-medium">
+                {labels[current]}
+              </span>
+            )}
+            <span className="text-white/50 text-sm">
+              {current + 1} / {images.length}
+            </span>
+          </div>
           <button
             onClick={onClose}
             className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/10"
