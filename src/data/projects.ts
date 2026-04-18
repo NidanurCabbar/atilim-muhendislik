@@ -50,7 +50,7 @@ export const projects: Project[] = [
     gallery: [
       '/images/projects/trio-1-cover-v2.png',
       '/images/projects/OFİS 2D-Photoroom 1.png',
-      'https://images.pexels.com/photos/19689230/pexels-photo-19689230.jpeg?auto=compress&cs=tinysrgb&w=1200', // iç tasarım — replace with dark luxury marble interior
+      '/images/projects/triorender.png',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
