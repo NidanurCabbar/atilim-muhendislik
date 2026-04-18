@@ -49,7 +49,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
           alt={project.fullName}
           fill
           className="object-cover"
-          style={{ filter: 'saturate(1.55) contrast(1.08) brightness(1.05) hue-rotate(-5deg)' }}
+          style={{ filter: 'saturate(1.55) contrast(1.08) brightness(1.05) hue-rotate(-5deg)', objectPosition: project.coverImagePosition ?? 'center' }}
           priority
           sizes="100vw"
         />

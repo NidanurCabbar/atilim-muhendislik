@@ -18,6 +18,7 @@ export interface Project {
   year: string;
   mapsUrl: string;
   coverImage: string;
+  coverImagePosition?: string;
   gallery: string[];
   galleryDescription?: string;
   completedYear?: number;
@@ -90,6 +91,7 @@ export const projects: Project[] = [
     year: '2025–2027',
     mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
     coverImage: '/images/projects/labris-cover.png',
+    coverImagePosition: 'center 30%',
     gallery: [
       '/images/projects/labris-cover.png',
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
