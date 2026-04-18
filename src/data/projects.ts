@@ -216,7 +216,7 @@ export const heroSlides = [
     subtitle: 'Modern yaşam anlayışını yüksek kaliteli malzeme ve özgün mimariyle buluşturuyor.',
   },
   {
-    image: '/images/hero/cover-image-3.png',
+    image: '/images/projects/Labrisv2.png',
     tagline: 'Benzersiz Bir Deneyim',
     projectName: 'LABRİS',
     projectSlug: 'labris',
