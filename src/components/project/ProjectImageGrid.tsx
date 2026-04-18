@@ -24,8 +24,8 @@ const NOTCH_R = 16;  // corner radius at ALL THREE notch transition points
 //   • top-right convex  (right image edge curves left into notch)
 //   • top-left concave  (notch roof curves down — the concave one)
 //   • bottom-left convex (notch left wall curves right to image bottom)
-function buildMaskUrl(W: number, H: number): string {
-  const R = OUTER_R, nW = NOTCH_W, nH = NOTCH_H, nR = NOTCH_R;
+function buildMaskUrl(W: number, H: number, notchW = NOTCH_W): string {
+  const R = OUTER_R, nW = notchW, nH = NOTCH_H, nR = NOTCH_R;
   const d = [
     `M ${R} 0`,
     `L ${W - R} 0 Q ${W} 0 ${W} ${R}`,                           // top-right outer corner
@@ -52,6 +52,7 @@ const ROW_BOT = 280;
 // The badge is a sibling, outside the mask, visible in the notch area.
 interface ImageCellProps {
   badgeText: string;
+  notchW?: number;
   gridArea?: string;
   onClick?: () => void;
   href?: string;
@@ -62,7 +63,7 @@ interface ImageCellProps {
 }
 
 function ImageCell({
-  badgeText, gridArea, onClick, href, hrefLabel, className, style: extraStyle, children,
+  badgeText, notchW = NOTCH_W, gridArea, onClick, href, hrefLabel, className, style: extraStyle, children,
 }: ImageCellProps) {
   const maskRef = useRef<HTMLDivElement>(null);
   const [maskUrl, setMaskUrl] = useState('');
@@ -72,13 +73,13 @@ function ImageCell({
     if (!el) return;
     const update = () => {
       const { width: W, height: H } = el.getBoundingClientRect();
-      if (W > 0 && H > 0) setMaskUrl(buildMaskUrl(Math.round(W), Math.round(H)));
+      if (W > 0 && H > 0) setMaskUrl(buildMaskUrl(Math.round(W), Math.round(H), notchW));
     };
     const ro = new ResizeObserver(update);
     ro.observe(el);
     update();
     return () => ro.disconnect();
-  }, []);
+  }, [notchW]);
 
   return (
     <div
@@ -119,9 +120,9 @@ function ImageCell({
       <div
         className="absolute z-30 pointer-events-none flex items-center justify-center"
         style={{
-          bottom: (NOTCH_H - 36) / 2,  // 12px — centered vertically
+          bottom: (NOTCH_H - 36) / 2,
           right:  0,
-          width:  NOTCH_W,
+          width:  notchW,
           height: 36,
         }}
       >
@@ -197,7 +198,7 @@ export default function ProjectImageGrid({
         </ImageCell>
 
         {/* PEYZAJ — spans both rows */}
-        <ImageCell badgeText="PEYZAJ" gridArea="peyzaj" onClick={() => open(0)}>
+        <ImageCell badgeText="PEYZAJ" notchW={110} gridArea="peyzaj" onClick={() => open(0)}>
           <Image
             src={img1}
             alt={`${projectName} peyzaj`}
