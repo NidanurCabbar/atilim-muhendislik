@@ -34,7 +34,7 @@ export default function CompletedProjects() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 transition-all duration-500 group-hover:bg-black/65" />
+            <div className="absolute inset-0 bg-black/25 transition-all duration-500 group-hover:bg-black/50" />
 
             {/* Title — always visible, animates up on hover (desktop only) */}
             <div className="absolute inset-0 flex items-end justify-center px-3 pb-10 transition-all duration-500 md:group-hover:pb-[4.5rem]">
