@@ -31,12 +31,12 @@ export default function ProjectsForSale() {
               <div className="relative aspect-square overflow-visible group cursor-pointer">
 
                 {/* Image container (clips image but not button) */}
-                <div className={`relative w-full h-full overflow-hidden rounded-2xl ${project.cardImageFit === 'contain' ? 'bg-black' : ''}`}>
+                <div className="relative w-full h-full overflow-hidden rounded-2xl">
                   <Image
-                    src={project.coverImage}
+                    src={project.cardImage ?? project.coverImage}
                     alt={project.name}
                     fill
-                    className={`${project.cardImageFit === 'contain' ? 'object-contain' : 'object-cover'} transition-all duration-700 group-hover:scale-105 group-hover:[filter:grayscale(0.18)_brightness(0.92)]`}
+                    className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:[filter:grayscale(0.18)_brightness(0.92)]"
                     style={{ objectPosition: project.cardImagePosition ?? 'center' }}
                     sizes="(max-width: 768px) 50vw, 50vw"
                   />

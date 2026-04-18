@@ -19,8 +19,8 @@ export interface Project {
   mapsUrl: string;
   coverImage: string;
   coverImagePosition?: string;
+  cardImage?: string;
   cardImagePosition?: string;
-  cardImageFit?: 'cover' | 'contain';
   gallery: string[];
   galleryDescription?: string;
   completedYear?: number;
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     area: '18.500 m²',
     year: '2024–2026',
     mapsUrl: 'https://maps.google.com/?q=İncek+Ankara',
-    coverImage: '/images/projects/Triov2.png',
+    coverImage: '/images/projects/trio-1-cover-v2.png',
     galleryDescription:
       'İncek\'in değer kazanan lokasyonunda yer alan Trio-1 İncek; çevresindeki sosyal olanaklar ve modern yaşam standartlarıyla hem yaşam hem de yatırım için güçlü bir alternatif sunuyor. Geniş ve kullanışlı yaşam alanları, estetik mimari detaylar ve çağdaş konseptiyle Trio -1 İncek, kendine özgü bir kent yaşamı arayanlar için özenle tasarlandı.',
     gallery: [
@@ -94,8 +94,7 @@ export const projects: Project[] = [
     mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
     coverImage: '/images/projects/Labrisv2.png',
     coverImagePosition: 'center 30%',
-    cardImagePosition: 'center 10%',
-    cardImageFit: 'contain',
+    cardImage: '/images/projects/Labrissmall.png',
     gallery: [
       '/images/projects/Labrisv2.png',
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',

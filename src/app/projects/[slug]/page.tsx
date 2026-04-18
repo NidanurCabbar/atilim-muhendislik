@@ -112,12 +112,12 @@ export default function ProjectDetailPage({ params }: PageProps) {
                       <div className="relative aspect-square overflow-visible group cursor-pointer">
 
                         {/* Image container — clips image but not button */}
-                        <div className={`relative w-full h-full overflow-hidden rounded-2xl ${other.cardImageFit === 'contain' ? 'bg-black' : ''}`}>
+                        <div className="relative w-full h-full overflow-hidden rounded-2xl">
                           <Image
-                            src={other.coverImage}
+                            src={other.cardImage ?? other.coverImage}
                             alt={other.name}
                             fill
-                            className={`${other.cardImageFit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-700 group-hover:scale-105`}
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
                             sizes="(max-width: 768px) 50vw, 50vw"
                             style={{ objectPosition: other.cardImagePosition ?? 'center' }}
                           />
