@@ -237,7 +237,7 @@ export const contactInfo = {
   phone2: '+90 (537) 288 74 29',
   whatsapp: '905332938739',
   email: 'info@atilimmuhendislik.com',
-  addressTR: 'Reşitpaşa Süyü Tower, Yazıcıoğlu Cd., 06830 Çankaya/Ankara',
+  addressTR: 'Mesnevi Caddesi 36/4, Çankaya, Ankara',
   addressUS: '823 Middlesex Turnpike, Burlington, MA 01803, USA',
   companyName: 'Atılım Mühendislik İnşaat A.Ş.',
   linkedin: '#',
