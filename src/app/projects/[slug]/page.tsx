@@ -137,7 +137,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
                         {/* Arrow button — protrudes from bottom center */}
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
-                          <div className="w-14 h-14 md:w-16 md:h-16 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-[#C8A96E] transition-colors duration-300">
+                          <div className="w-14 h-14 md:w-16 md:h-16 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-red-600 transition-colors duration-300">
                             <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
                               <path
                                 d="M2 8H14M14 8L9 3M14 8L9 13"
