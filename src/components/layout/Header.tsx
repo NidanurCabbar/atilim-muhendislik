@@ -145,7 +145,7 @@ export default function Header() {
               transition: 'color 0.4s ease',
             }}
           >
-            <span className="text-xs tracking-[0.25em] font-light uppercase">Menü</span>
+            <span className="hidden md:inline text-xs tracking-[0.25em] font-light uppercase">Menü</span>
             <Menu className="w-6 h-6" />
           </button>
         </div>

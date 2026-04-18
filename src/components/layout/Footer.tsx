@@ -30,13 +30,6 @@ export default function Footer() {
           >
             WhatsApp
           </a>
-          <span className="text-white/20">|</span>
-          <a
-            href={`mailto:${contactInfo.email}`}
-            className="text-gray-400 hover:text-white transition-colors duration-200 tracking-wide"
-          >
-            {contactInfo.email}
-          </a>
         </div>
 
         <span className="text-gray-600 text-xs tracking-wide">

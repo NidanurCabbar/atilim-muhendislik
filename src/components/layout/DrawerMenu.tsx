@@ -19,6 +19,7 @@ const allLabels = projects.flatMap((p) => p.gallery.map(() => p.name));
 const navLinks = [
   { label: 'PROJELERİMİZ', href: '/#projects' },
   { label: 'GALERİ',        href: '/#gallery' },
+  { label: 'HAKKIMIZDA',   href: '/hakkimizda' },
   { label: 'İLETİŞİM',     href: '/iletisim' },
 ];
 

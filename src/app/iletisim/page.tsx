@@ -39,9 +39,6 @@ export default function IletisimPage() {
             <p className="text-white/60 text-sm leading-relaxed">
               {contactInfo.addressTR}
             </p>
-            <p className="text-white/60 text-sm leading-relaxed">
-              {contactInfo.addressUS}
-            </p>
           </div>
 
           {/* İLETİŞİM */}
@@ -60,12 +57,6 @@ export default function IletisimPage() {
               className="block text-white/60 hover:text-white transition-colors text-sm"
             >
               {contactInfo.phone2}
-            </a>
-            <a
-              href={`mailto:${contactInfo.email}`}
-              className="block text-white/60 hover:text-white transition-colors text-sm"
-            >
-              {contactInfo.email}
             </a>
           </div>
 
