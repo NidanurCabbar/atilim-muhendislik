@@ -87,7 +87,8 @@ export default function Header() {
           paddingBottom:        scrolled ? '1.25rem' : undefined,
         }}
       >
-        <Link href="/" className="inline-block">
+        <Link href="/" className="inline-block relative h-14 w-[120px]">
+          {/* Default logo — visible when not scrolled */}
           <Image
             ref={logoRef}
             src="/logo.png"
@@ -95,10 +96,24 @@ export default function Header() {
             width={120}
             height={64}
             priority
-            className="h-14 w-auto object-contain"
+            className="absolute inset-0 h-14 w-auto object-contain"
             style={{
               filter: !scrolled && onLight ? 'brightness(0)' : 'none',
-              transition: 'filter 0.4s ease',
+              opacity: scrolled ? 0 : 1,
+              transition: 'opacity 0.4s ease, filter 0.4s ease',
+            }}
+          />
+          {/* Scrolled logo — fades in with frosted glass navbar */}
+          <Image
+            src="/Atilim-Logo 2 (1).png"
+            alt="Atılım Mühendislik"
+            width={120}
+            height={64}
+            priority
+            className="absolute inset-0 h-14 w-auto object-contain"
+            style={{
+              opacity: scrolled ? 1 : 0,
+              transition: 'opacity 0.4s ease',
             }}
           />
         </Link>
