@@ -241,7 +241,7 @@ export const contactInfo = {
   addressUS: '823 Middlesex Turnpike, Burlington, MA 01803, USA',
   companyName: 'Atılım Mühendislik İnşaat A.Ş.',
   linkedin: '#',
-  instagram: '#',
+  instagram: 'https://www.instagram.com/atilimmuteahhitlik?igsh=MXhsbWd5ZHYwa3Q3YQ==',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
