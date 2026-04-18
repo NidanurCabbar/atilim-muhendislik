@@ -25,10 +25,13 @@ export default function ProjectsForSale() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className=""
+            className="md:pb-8"
           >
             <Link href={`/projects/${project.slug}`}>
-              <div className="relative aspect-square overflow-hidden rounded-2xl group cursor-pointer">
+              <div className="relative aspect-square overflow-visible group cursor-pointer">
+
+                {/* Image container */}
+                <div className="relative w-full h-full overflow-hidden rounded-2xl">
                   <Image
                     src={project.cardImage ?? project.coverImage}
                     alt={project.name}
@@ -42,7 +45,7 @@ export default function ProjectsForSale() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
                   {/* Project name — bottom center */}
-                  <div className="absolute bottom-6 left-0 right-0 flex justify-center">
+                  <div className="absolute bottom-6 md:bottom-12 left-0 right-0 flex justify-center">
                     <span
                       className="text-white text-lg md:text-2xl font-semibold tracking-widest uppercase"
                       style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
@@ -50,6 +53,26 @@ export default function ProjectsForSale() {
                       {project.name}
                     </span>
                   </div>
+                </div>
+
+                {/* Arrow button — desktop only */}
+                <div
+                  className="hidden md:flex absolute left-1/2 z-10"
+                  style={{ bottom: -28, transform: 'translateX(-50%)' }}
+                >
+                  <div className="w-14 h-14 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-red-600 transition-colors duration-300">
+                    <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M2 8H14M14 8L9 3M14 8L9 13"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
               </div>
             </Link>
           </motion.div>
