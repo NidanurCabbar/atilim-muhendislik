@@ -119,6 +119,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                             sizes="(max-width: 768px) 50vw, 50vw"
+                            style={{ objectPosition: other.cardImagePosition ?? 'center' }}
                           />
 
                           {/* Dark gradient overlay */}

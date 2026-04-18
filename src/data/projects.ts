@@ -19,6 +19,7 @@ export interface Project {
   mapsUrl: string;
   coverImage: string;
   coverImagePosition?: string;
+  cardImagePosition?: string;
   gallery: string[];
   galleryDescription?: string;
   completedYear?: number;
@@ -92,6 +93,7 @@ export const projects: Project[] = [
     mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
     coverImage: '/images/projects/Labrisv2.png',
     coverImagePosition: 'center 30%',
+    cardImagePosition: 'center 20%',
     gallery: [
       '/images/projects/Labrisv2.png',
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',

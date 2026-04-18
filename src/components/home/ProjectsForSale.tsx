@@ -37,6 +37,7 @@ export default function ProjectsForSale() {
                     alt={project.name}
                     fill
                     className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:[filter:grayscale(0.18)_brightness(0.92)]"
+                    style={{ objectPosition: project.cardImagePosition ?? 'center' }}
                     sizes="(max-width: 768px) 50vw, 50vw"
                   />
 
