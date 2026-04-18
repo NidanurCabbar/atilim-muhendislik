@@ -42,7 +42,7 @@ export const projects: Project[] = [
     area: '18.500 m²',
     year: '2024–2026',
     mapsUrl: 'https://maps.google.com/?q=İncek+Ankara',
-    coverImage: '/images/projects/trio-1-cover-v2.png',
+    coverImage: '/images/projects/Triov2.png',
     galleryDescription:
       'İncek\'in değer kazanan lokasyonunda yer alan Trio-1 İncek; çevresindeki sosyal olanaklar ve modern yaşam standartlarıyla hem yaşam hem de yatırım için güçlü bir alternatif sunuyor. Geniş ve kullanışlı yaşam alanları, estetik mimari detaylar ve çağdaş konseptiyle Trio -1 İncek, kendine özgü bir kent yaşamı arayanlar için özenle tasarlandı.',
     gallery: [
