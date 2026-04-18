@@ -82,7 +82,7 @@ export default function Header() {
         style={{
           backdropFilter:       scrolled ? 'blur(16px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-          backgroundColor:      scrolled ? 'rgba(0,0,0,0.15)' : 'transparent',
+          backgroundColor:      scrolled ? 'rgba(0,0,0,0.20)' : 'transparent',
           paddingTop:           scrolled ? '1.25rem' : undefined,
           paddingBottom:        scrolled ? '1.25rem' : undefined,
         }}
