@@ -20,6 +20,7 @@ export interface Project {
   coverImage: string;
   coverImagePosition?: string;
   cardImagePosition?: string;
+  cardImageFit?: 'cover' | 'contain';
   gallery: string[];
   galleryDescription?: string;
   completedYear?: number;
@@ -94,6 +95,7 @@ export const projects: Project[] = [
     coverImage: '/images/projects/Labrisv2.png',
     coverImagePosition: 'center 30%',
     cardImagePosition: 'center 10%',
+    cardImageFit: 'contain',
     gallery: [
       '/images/projects/Labrisv2.png',
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
