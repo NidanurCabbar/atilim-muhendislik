@@ -90,10 +90,10 @@ export const projects: Project[] = [
     area: '28.000 m²',
     year: '2025–2027',
     mapsUrl: 'https://maps.google.com/?q=Ankara+Türkiye',
-    coverImage: '/images/projects/labris-cover.png',
+    coverImage: '/images/projects/Labrisv2.png',
     coverImagePosition: 'center 30%',
     gallery: [
-      '/images/projects/labris-cover.png',
+      '/images/projects/Labrisv2.png',
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
