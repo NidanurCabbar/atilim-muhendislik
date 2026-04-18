@@ -31,7 +31,7 @@ export default function HakkimizdaPage() {
           {/* Body text */}
           <div className="space-y-3">
             <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-md">
-              1995 yılında Ankara'da, İTÜ İnşaat Mühendisliği (1990) mezunu Zafer Özerson tarafından kurulan Atılım Müteahhitlik; çeyrek asrı aşan tecrübesiyle sektörde güvenin simgesi olmuştur. Konut, ticari ve kamu projelerinde mühendislik disiplini ve sürdürülebilirlik ilkelerini harmanlayan firmamız, yurt içi ve yurt dışındaki başarılı projeleriyle geleceği inşa etmeye devam etmektedir. Güçlü ekibimiz ve yenilikçi vizyonumuzla, kalite standartlarını her zaman en üstte tutuyoruz.
+              1995 yılında Ankara&apos;da, İTÜ İnşaat Mühendisliği (1990) mezunu Zafer Özerson tarafından kurulan Atılım Müteahhitlik; çeyrek asrı aşan tecrübesiyle sektörde güvenin simgesi olmuştur. Konut, ticari ve kamu projelerinde mühendislik disiplini ve sürdürülebilirlik ilkelerini harmanlayan firmamız, yurt içi ve yurt dışındaki başarılı projeleriyle geleceği inşa etmeye devam etmektedir. Güçlü ekibimiz ve yenilikçi vizyonumuzla, kalite standartlarını her zaman en üstte tutuyoruz.
             </p>
           </div>
 
