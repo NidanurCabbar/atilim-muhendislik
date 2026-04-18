@@ -59,7 +59,7 @@ export default function ProjectsForSale() {
                   className="absolute left-1/2 z-10"
                   style={{ bottom: -28, transform: 'translateX(-50%)' }}
                 >
-                  <div className="w-14 h-14 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-[#C8A96E] transition-colors duration-300">
+                  <div className="w-14 h-14 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-red-600 transition-colors duration-300">
                     <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
                       <path
                         d="M2 8H14M14 8L9 3M14 8L9 13"
