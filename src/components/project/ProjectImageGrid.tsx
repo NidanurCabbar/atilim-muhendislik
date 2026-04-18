@@ -15,7 +15,7 @@ interface ProjectImageGridProps {
 
 // ── Notch geometry (px) ───────────────────────────────────────────────────────
 const OUTER_R = 12;  // outer image card corner radius
-const NOTCH_W = 156; // notch width  — badge (~132px) + 12px gap each side
+const NOTCH_W = 110; // notch width  — badge + gap each side
 const NOTCH_H = 60;  // notch height — badge (36px) + 12px gap each side
 const NOTCH_R = 16;  // corner radius at ALL THREE notch transition points
 
@@ -198,7 +198,7 @@ export default function ProjectImageGrid({
         </ImageCell>
 
         {/* PEYZAJ — spans both rows */}
-        <ImageCell badgeText="PEYZAJ" notchW={110} gridArea="peyzaj" onClick={() => open(0)}>
+        <ImageCell badgeText="PEYZAJ" gridArea="peyzaj" onClick={() => open(0)}>
           <Image
             src={img1}
             alt={`${projectName} peyzaj`}
