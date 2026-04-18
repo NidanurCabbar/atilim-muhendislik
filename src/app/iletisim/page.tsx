@@ -16,7 +16,7 @@ export default function IletisimPage() {
       <section className="min-h-screen grid md:grid-cols-[55fr_45fr]">
 
         {/* ── Left — Contact info ── */}
-        <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-36 pb-20 md:pt-40 space-y-12">
+        <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-10 pb-20 md:pt-40 space-y-12">
 
           {/* Heading */}
           <div className="space-y-4">
