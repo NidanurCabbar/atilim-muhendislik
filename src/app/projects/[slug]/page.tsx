@@ -125,8 +125,8 @@ export default function ProjectDetailPage({ params }: PageProps) {
                           {/* Dark gradient overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                          {/* Project name — bottom center, above button */}
-                          <div className="absolute bottom-12 left-0 right-0 flex justify-center">
+                          {/* Project name — bottom center */}
+                          <div className="absolute bottom-6 md:bottom-12 left-0 right-0 flex justify-center">
                             <span
                               className="text-white text-lg md:text-2xl font-semibold tracking-widest uppercase"
                               style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
@@ -136,8 +136,8 @@ export default function ProjectDetailPage({ params }: PageProps) {
                           </div>
                         </div>
 
-                        {/* Arrow button — protrudes from bottom center */}
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
+                        {/* Arrow button — protrudes from bottom center, desktop only */}
+                        <div className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
                           <div className="w-14 h-14 md:w-16 md:h-16 bg-black border-2 border-white rounded-xl flex items-center justify-center group-hover:bg-red-600 transition-colors duration-300">
                             <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
                               <path
