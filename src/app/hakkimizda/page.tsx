@@ -1,86 +1,156 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { contactInfo } from '@/data/projects';
 
 export const metadata = {
   title: 'Hakkımızda | Atılım Mühendislik',
   description: '1995 yılında kurulan Atılım Müteahhitlik, çeyrek asrı aşan tecrübesiyle sektörde güvenin simgesi.',
 };
 
+const team = [
+  { name: 'Talatcan', surname: 'Özerson', role: 'Proje Yöneticisi', photo: '/team/talatcan.png' },
+  { name: 'Zafer', surname: 'Özerson', role: 'Kurucu & Genel Müdür', photo: '/team/zafer.png' },
+  { name: 'Eren Erdoğan', surname: 'Güven', role: 'Proje Mühendisi', photo: '/team/eren.png' },
+];
+
 export default function HakkimizdaPage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-white text-black">
       <Header />
 
-      <section className="min-h-screen grid md:grid-cols-[55fr_45fr]">
+      {/* ── Hero ── */}
+      <section className="relative w-full h-[100svh] min-h-[560px] bg-black overflow-hidden">
+        <Image
+          src="/images/hero/hakkımızdabanner.png"
+          alt="Atılım Mühendislik"
+          fill
+          className="object-cover"
+          style={{ objectPosition: '75% center', filter: 'saturate(1.4) brightness(1.08)' }}
+          priority
+          sizes="100vw"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 30%, rgba(0,0,0,0.4) 55%, transparent 90%)' }}
+        />
 
-        {/* ── Left — Content ── */}
-        <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-36 pb-20 md:pt-40 space-y-12">
-
-          {/* Heading */}
-          <div className="space-y-4">
-            <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight"
-              style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
-            >
-              Çeyrek asırlık güvenle<br />geleceği inşa ediyoruz
+        <div className="absolute inset-0 z-10 flex items-end pb-24 md:pb-28">
+          <div className="px-6 md:px-14 w-full md:w-1/2">
+            <h1 className="text-3xl md:text-5xl font-medium text-white leading-tight tracking-wide mb-4"
+              style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}>
+              Geleceği Güvenle<br />İnşa Ediyoruz
             </h1>
-          </div>
-
-          {/* Body text */}
-          <div className="space-y-3">
-            <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-md">
-              1995 yılında Ankara&apos;da, İTÜ İnşaat Mühendisliği (1990) mezunu Zafer Özerson tarafından kurulan Atılım Müteahhitlik; çeyrek asrı aşan tecrübesiyle sektörde güvenin simgesi olmuştur. Konut, ticari ve kamu projelerinde mühendislik disiplini ve sürdürülebilirlik ilkelerini harmanlayan firmamız, yurt içi ve yurt dışındaki başarılı projeleriyle geleceği inşa etmeye devam etmektedir. Güçlü ekibimiz ve yenilikçi vizyonumuzla, kalite standartlarını her zaman en üstte tutuyoruz.
+            <p className="text-white/70 text-sm md:text-base leading-relaxed mb-8 max-w-md">
+              1995'ten bu yana; konut, ticari yapı ve taahhüt projelerinde güven, kalite ve sürdürülebilirliği bir araya getiriyoruz. Her projede güçlü mühendislik altyapısı, planlı süreç yönetimi ve seçkin uygulama anlayışıyla ilerliyoruz.
             </p>
+            <Link
+              href="/#projects"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-red-500 text-red-400 text-sm hover:bg-red-600 hover:text-white transition-all duration-300"
+            >
+              Projelerimizi İnceleyin →
+            </Link>
           </div>
+        </div>
+      </section>
 
-          {/* Bizi Takip Edin */}
-          <div className="space-y-3">
-            <p className="text-[10px] tracking-[0.3em] text-white/40 uppercase font-semibold">
-              Bizi Takip Edin
-            </p>
-            <div className="flex gap-3">
-              <a
-                href={contactInfo.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
-              <a
-                href={contactInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
+      {/* ── Stats ── */}
+      <section className="bg-white py-16 px-6 md:px-14">
+        <div className="max-w-4xl mx-auto grid grid-cols-3 gap-8 text-center">
+          {[
+            { value: '30+', label: 'YILLIK TECRÜBE' },
+            { value: '50+', label: 'TAMAMLANAN PROJE' },
+            { value: '1000+', label: 'MÜŞTERİ REFERANSI' },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <p className="text-4xl md:text-6xl font-bold text-red-600 mb-2"
+                style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}>
+                {stat.value}
+              </p>
+              <p className="text-[10px] md:text-xs tracking-[0.25em] text-gray-500 font-medium uppercase">
+                {stat.label}
+              </p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Biz Kimiz ── */}
+      <section className="bg-white px-6 md:px-14 py-16">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="/images/hero/hakkımızda.png"
+              alt="Atılım Mühendislik"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
-
+          <div className="space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-black"
+              style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}>
+              Biz Kimiz?
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+              1995 yılında Atılım Müteahhitlik çatısı altında başlayan yolculuğumuzu, ilk günden itibaren <strong>kalite, güven</strong> ve <strong>mühendislik disiplini</strong> odağında sürdürüyoruz. Kurucumuz Zafer Özerson'un teknik birikimiyle, modern mühendislik çözümlerini estetik bir mimari anlayışla birleştiriyoruz. Bizim için bir yapı inşa etmek; sadece bir proje değil, uzun vadeli değer ve kalıcı bir imzadır.
+            </p>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+              Yaklaşık 30 yıllık tecrübemizle, konut projelerinden kamu yapılarına kadar her aşamada en yüksek standartları hedefliyoruz.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* ── Right — Image ── */}
-        <div className="relative h-72 md:h-auto md:sticky md:top-0 md:min-h-screen order-first md:order-last">
-          <Image
-            src="/images/projects/about-us 1.png"
-            alt="Atılım Mühendislik"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 45vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+      {/* ── Ekibimiz ── */}
+      <section className="bg-white px-6 md:px-14 py-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-14"
+            style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}>
+            Ekibimiz
+          </h2>
+          <div className="grid grid-cols-3 gap-8 md:gap-12">
+            {team.map((member) => (
+              <div key={member.surname + member.name} className="flex flex-col items-center text-center gap-4">
+                <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0">
+                  <Image src={member.photo} alt={`${member.name} ${member.surname}`} fill className="object-cover" sizes="128px" />
+                </div>
+                <div>
+                  <p className="text-sm md:text-base font-normal text-black">
+                    {member.name} <span className="font-bold">{member.surname}</span>
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-500 mt-0.5">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
+      {/* ── CTA ── */}
+      <section className="px-6 md:px-14 py-16 bg-white">
+        <div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-black via-[#1a0000] to-black px-8 md:px-16 py-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4"
+            style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}>
+            Hayallerinizdeki Yapıyı<br />Birlikte İnşa Edelim
+          </h2>
+          <p className="text-white/60 text-sm md:text-base mb-10">
+            Proje hakkında detaylı bilgi ve özel satış fırsatları için bizimle iletişime geçin.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/iletisim"
+              className="px-8 py-3 border border-white text-white text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Hemen İletişime Geçin
+            </Link>
+            <button
+              className="px-8 py-3 border border-white/30 text-white/70 text-sm tracking-widest uppercase hover:border-white hover:text-white transition-all duration-300"
+            >
+              Katalog İndir
+            </button>
+          </div>
+        </div>
       </section>
 
       <Footer />
