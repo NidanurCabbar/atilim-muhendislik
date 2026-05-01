@@ -12,7 +12,7 @@ export default function CompletedProjects() {
             src="/images/projects/esenboga-cover.png"
             alt="Tamamlanmış Projeler"
             fill
-            className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110 group-hover:saturate-125"
+            className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110 group-hover:saturate-150"
             sizes="(max-width: 768px) 100vw, 1152px"
           />
 
