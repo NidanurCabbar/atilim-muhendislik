@@ -68,15 +68,14 @@ export default function TamamlananProjelerPage() {
                 <p
                   className="text-sm text-gray-500 mt-0 max-h-0 opacity-0 overflow-hidden
                              group-hover:max-h-[2rem] group-hover:opacity-100 group-hover:mt-2
-                             transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
-                             whitespace-nowrap text-ellipsis"
+                             transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
                 >
                   {project.description}
                 </p>
               </div>
 
               {/* Centre — meta (fades out on hover) */}
-              <div className="hidden md:flex gap-8 flex-shrink-0 group-hover:opacity-0 transition-opacity duration-400">
+              <div className="hidden md:flex gap-8 flex-shrink-0 group-hover:opacity-0 transition-opacity duration-500">
                 <div className="text-right">
                   <p className="text-[9px] tracking-[0.25em] text-gray-400 uppercase">Konum</p>
                   <p className="text-xs font-semibold text-gray-600 mt-0.5">{project.location}</p>
