@@ -42,7 +42,7 @@ export default function HakkimizdaPage() {
               Geleceği Güvenle<br />İnşa Ediyoruz
             </h1>
             <p className="text-white/70 text-sm md:text-base leading-relaxed mb-8 max-w-md">
-              1995'ten bu yana; konut, ticari yapı ve taahhüt projelerinde güven, kalite ve sürdürülebilirliği bir araya getiriyoruz. Her projede güçlü mühendislik altyapısı, planlı süreç yönetimi ve seçkin uygulama anlayışıyla ilerliyoruz.
+              1995&apos;ten bu yana; konut, ticari yapı ve taahhüt projelerinde güven, kalite ve sürdürülebilirliği bir araya getiriyoruz. Her projede güçlü mühendislik altyapısı, planlı süreç yönetimi ve seçkin uygulama anlayışıyla ilerliyoruz.
             </p>
             <Link
               href="/#projects"
@@ -93,7 +93,7 @@ export default function HakkimizdaPage() {
               Biz Kimiz?
             </h2>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-              1995 yılında Atılım Müteahhitlik çatısı altında başlayan yolculuğumuzu, ilk günden itibaren <strong>kalite, güven</strong> ve <strong>mühendislik disiplini</strong> odağında sürdürüyoruz. Kurucumuz Zafer Özerson'un teknik birikimiyle, modern mühendislik çözümlerini estetik bir mimari anlayışla birleştiriyoruz. Bizim için bir yapı inşa etmek; sadece bir proje değil, uzun vadeli değer ve kalıcı bir imzadır.
+              1995 yılında Atılım Müteahhitlik çatısı altında başlayan yolculuğumuzu, ilk günden itibaren <strong>kalite, güven</strong> ve <strong>mühendislik disiplini</strong> odağında sürdürüyoruz. Kurucumuz Zafer Özerson&apos;un teknik birikimiyle, modern mühendislik çözümlerini estetik bir mimari anlayışla birleştiriyoruz. Bizim için bir yapı inşa etmek; sadece bir proje değil, uzun vadeli değer ve kalıcı bir imzadır.
             </p>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed">
               Yaklaşık 30 yıllık tecrübemizle, konut projelerinden kamu yapılarına kadar her aşamada en yüksek standartları hedefliyoruz.
