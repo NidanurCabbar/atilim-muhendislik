@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { contactInfo } from '@/data/projects';
 
 export default function ContactCta() {
@@ -6,18 +5,8 @@ export default function ContactCta() {
     <section className="bg-white px-4 md:px-8 py-16 border-t border-gray-400">
       <div className="max-w-4xl mx-auto text-center">
 
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight flex items-center justify-center flex-wrap gap-x-4 gap-y-2">
-          <span>Ayrıcalıklı bir</span>
-          <span className="relative inline-block w-24 h-14 md:w-32 md:h-20 rounded-full overflow-hidden align-middle">
-            <Image
-              src="/images/hero/cover-image-1.png"
-              alt=""
-              fill
-              className="object-cover"
-              sizes="128px"
-            />
-          </span>
-          <span>yaşam sizi bekliyor</span>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
+          Ayrıcalıklı bir yaşam sizi bekliyor
         </h2>
 
         <p className="text-gray-400 text-sm md:text-base mb-10">

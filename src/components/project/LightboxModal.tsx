@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { lockScroll, unlockScroll } from '@/utils/scrollLock';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -31,18 +32,20 @@ export default function LightboxModal({
     setCurrent((c) => (c + 1) % images.length);
   }, [images.length]);
 
-  // Keyboard navigation
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
+    lockScroll();
+    closeButtonRef.current?.focus();
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape')      onClose();
       if (e.key === 'ArrowLeft')   prev();
       if (e.key === 'ArrowRight')  next();
     };
     window.addEventListener('keydown', handler);
-    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', handler);
-      document.body.style.overflow = '';
+      unlockScroll();
     };
   }, [onClose, prev, next]);
 
@@ -55,6 +58,9 @@ export default function LightboxModal({
   return (
     <AnimatePresence>
       <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Galeri"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -73,6 +79,7 @@ export default function LightboxModal({
             </span>
           </div>
           <button
+            ref={closeButtonRef}
             onClick={onClose}
             className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/10"
             aria-label="Kapat"

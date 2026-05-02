@@ -21,6 +21,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${project.fullName} | Atılım Mühendislik`,
     description: project.description,
+    openGraph: {
+      title: `${project.fullName} | Atılım Mühendislik`,
+      description: project.description,
+      images: [{ url: project.coverImage, width: 1200, height: 630 }],
+    },
+    twitter: { card: 'summary_large_image' },
   };
 }
 
@@ -34,9 +40,11 @@ export default function ProjectDetailPage({ params }: PageProps) {
     `Merhaba, "${project.fullName}" projesi hakkında bilgi almak istiyorum.`,
   );
 
-  const img1 = project.gallery[0] ?? project.coverImage;
-  const img2 = project.gallery[1] ?? project.coverImage;
-  const img3 = project.gallery[2] ?? project.coverImage;
+  const gridImages = project.gridImages ?? [
+    { src: project.gallery[0] ?? project.coverImage, label: 'DIŞ CEPHE'   },
+    { src: project.gallery[1] ?? project.coverImage, label: 'DIŞ CEPHE'   },
+    { src: project.gallery[2] ?? project.coverImage, label: 'İÇ MEKAN'  },
+  ];
 
   return (
     <main className="min-h-screen bg-white text-black">
@@ -88,13 +96,31 @@ export default function ProjectDetailPage({ params }: PageProps) {
       <section className="bg-white px-4 md:px-6 py-10">
         <div className="max-w-6xl mx-auto">
           <ProjectImageGrid
-            images={[img1, img2, img3]}
+            images={gridImages}
             projectName={project.name}
             aboutProject={project.galleryDescription ?? project.aboutProject}
             mapsUrl={project.mapsUrl}
             whatsappHref={`https://wa.me/${contactInfo.whatsapp}?text=${whatsappMsg}`}
             galleryImages={project.gallery}
           />
+
+          {/* ── Katalog ── */}
+          {project.catalogPdf && (
+            <div className="flex justify-center mb-14">
+              <a
+                href={project.catalogPdf}
+                download
+                className="inline-flex items-center gap-3 px-8 py-4 border border-black text-black text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-all duration-300"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Proje Kataloğunu İndir
+              </a>
+            </div>
+          )}
 
           {/* ── Diğer Projelerimiz ───────────────────────────────────── */}
           {otherProjects.length > 0 && (

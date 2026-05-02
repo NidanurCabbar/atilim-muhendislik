@@ -4,13 +4,15 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Atılım Mühendislik İnşaat | Ankara\'nın Prestijli Konut Projeleri',
   description:
-    '25 yıllık deneyimle Ankara\'nın lüks konut projelerini hayata geçiriyoruz. Satıştaki ve tamamlanmış projelerimizi keşfedin.',
+    '30 yılı aşkın deneyimle Ankara\'nın lüks konut projelerini hayata geçiriyoruz. Satıştaki ve tamamlanmış projelerimizi keşfedin.',
   keywords: 'atılım mühendislik, inşaat, konut projeleri, ankara, lüks daire, villa',
   openGraph: {
-    title: 'Atılım Mühendislik İnşaat',
-    description: 'Ankara\'nın prestijli konut projeleri',
+    title: 'Atılım Mühendislik İnşaat | Ankara\'nın Prestijli Konut Projeleri',
+    description: '30 yılı aşkın deneyimle Ankara\'nın lüks konut projelerini hayata geçiriyoruz.',
     type: 'website',
+    images: [{ url: '/images/projects/trio-1-cover-v2.png', width: 1200, height: 630 }],
   },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({

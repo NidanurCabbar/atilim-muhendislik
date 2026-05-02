@@ -29,7 +29,7 @@ export default function CompletedProjects() {
                 className="text-3xl md:text-4xl font-light text-white leading-tight tracking-wide"
                 style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
               >
-                30+ Yılın <span className="font-bold">Mirası</span>
+                Tamamlanmış <span className="font-bold">Projeler</span>
               </h2>
               <p
                 className="text-sm text-white/50 mt-0 max-h-0 opacity-0 overflow-hidden

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import StatsCounter from '@/components/hakkimizda/StatsCounter';
 
 export const metadata = {
   title: 'Hakkımızda | Atılım Mühendislik',
@@ -55,25 +56,7 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="bg-white py-16 px-6 md:px-14">
-        <div className="max-w-4xl mx-auto grid grid-cols-3 gap-8 text-center">
-          {[
-            { value: '30+', label: 'YILLIK TECRÜBE' },
-            { value: '50+', label: 'TAMAMLANAN PROJE' },
-            { value: '1000+', label: 'MÜŞTERİ REFERANSI' },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <p className="text-4xl md:text-6xl font-bold text-red-600 mb-2"
-                style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}>
-                {stat.value}
-              </p>
-              <p className="text-[10px] md:text-xs tracking-[0.25em] text-gray-500 font-medium uppercase">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <StatsCounter />
 
       {/* ── Biz Kimiz ── */}
       <section className="bg-white px-6 md:px-14 py-16">
@@ -112,8 +95,8 @@ export default function HakkimizdaPage() {
           <div className="grid grid-cols-3 gap-8 md:gap-12">
             {team.map((member) => (
               <div key={member.surname + member.name} className="flex flex-col items-center text-center gap-4">
-                <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0">
-                  <Image src={member.photo} alt={`${member.name} ${member.surname}`} fill className="object-cover" sizes="128px" />
+                <div className="relative w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden shrink-0">
+                  <Image src={member.photo} alt={`${member.name} ${member.surname}`} fill className="object-cover" sizes="192px" />
                 </div>
                 <div>
                   <p className="text-sm md:text-base font-normal text-black">
@@ -144,11 +127,13 @@ export default function HakkimizdaPage() {
             >
               Hemen İletişime Geçin
             </Link>
-            <button
-              className="px-8 py-3 border border-white/30 text-white/70 text-sm tracking-widest uppercase hover:border-white hover:text-white transition-all duration-300"
+            <a
+              href="/pdfs/atilim-katalog.pdf"
+              download
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 border border-white/30 text-white/70 text-sm tracking-widest uppercase hover:border-white hover:text-white transition-all duration-300"
             >
               Katalog İndir
-            </button>
+            </a>
           </div>
         </div>
       </section>

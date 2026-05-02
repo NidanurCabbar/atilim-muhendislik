@@ -22,7 +22,9 @@ export interface Project {
   cardImage?: string;
   cardImagePosition?: string;
   gallery: string[];
+  gridImages?: { src: string; label: string }[];
   galleryDescription?: string;
+  catalogPdf?: string;
   completedYear?: number;
 }
 
@@ -55,6 +57,12 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
     ],
+    gridImages: [
+      { src: '/images/projects/trio-1-cover-v2.png',          label: 'PEYZAJ'     },
+      { src: '/images/projects/OFİS 2D-Photoroom 1.png',      label: 'KAT PLANI'  },
+      { src: '/images/projects/triorender.png',                label: 'İÇ TASARIM'   },
+    ],
+    catalogPdf: '/pdfs/trio-1-katalog.pdf',
   },
   {
     slug: 'trio-2',
@@ -76,6 +84,11 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=1200&q=80',
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+    ],
+    gridImages: [
+      { src: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80', label: 'DIŞ CEPHE'    },
+      { src: 'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=1200&q=80', label: 'DIŞ CEPHE'  },
+      { src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80', label: 'İÇ MEKAN' },
     ],
   },
   {
@@ -101,6 +114,11 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
     ],
+    gridImages: [
+      { src: '/images/projects/Labrisv2.png',                                          label: 'DIŞ CEPHE'    },
+      { src: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80', label: 'DIŞ CEPHE'  },
+      { src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80', label: 'İÇ MEKAN' },
+    ],
   },
   {
     slug: 'ilko',
@@ -122,6 +140,11 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80',
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+    ],
+    gridImages: [
+      { src: '/images/projects/ilko-cover-v2.png',                                       label: 'DIŞ CEPHE'    },
+      { src: 'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80', label: 'DIŞ CEPHE'    },
+      { src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80', label: 'İÇ MEKAN'  },
     ],
   },
 
@@ -145,7 +168,7 @@ export const projects: Project[] = [
     completedYear: 2021,
   },
   {
-    slug: '360-avm',
+    slug: '365-avm',
     name: '365 AVM',
     fullName: '365 AVM',
     tagline: 'Tamamlandı',
@@ -181,17 +204,17 @@ export const projects: Project[] = [
     completedYear: 2020,
   },
   {
-    slug: 'erifsha-international-airport',
+    slug: 'enfidha-international-airport',
     name: 'Enfidha International Airport',
     fullName: 'Enfidha International Airport',
     tagline: 'Tamamlandı',
     description: 'Yapının mimari estetiğini ve teknik ömrünü güçlendiren taş kaplama, mekanik kaplama, izolasyon ve çevre düzenlemesi çalışmaları titizlikle tamamlanmıştır.',
-    aboutProject: 'Erifsha Uluslararası Havalimanı, modern terminal binası ve altyapısıyla bölgenin hava ulaşımına önemli katkılar sağlayan büyük ölçekli bir havalimanı projesidir.',
+    aboutProject: 'Enfidha Uluslararası Havalimanı, modern terminal binası ve altyapısıyla bölgenin hava ulaşımına önemli katkılar sağlayan büyük ölçekli bir havalimanı projesidir.',
     status: 'completed',
     location: 'Uluslararası',
     area: '95.000 m²',
     year: '2020–2023',
-    mapsUrl: 'https://maps.google.com/?q=Erifsha+International+Airport',
+    mapsUrl: 'https://maps.google.com/?q=Enfidha+International+Airport+Tunisia',
     coverImage: '/images/projects/airp.png',
     gallery: [
       '/images/projects/airp.png',
@@ -231,6 +254,28 @@ export const heroSlides = [
     projectName: 'İLKO',
     projectSlug: 'ilko',
     subtitle: 'Bitişik nizam villada, hayallerinizdeki prestijli yaşam standartlarına bugün adım atın ve yerinizi hemen ayırtın.',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// KONUT VE TİCARİ YAPILAR (Tamamlanmış Projeler sayfası alt bölümü)
+// ─────────────────────────────────────────────────────────────────────────────
+export const residentialProjects = [
+  {
+    name: 'Keçiören Konut ve Dükkanlar',
+    detail: '16 daire, 3 dükkan (2.863 m²) · 10 daire (1.558 m²) · 10 daire, 2 dükkan (1.802 m²) · 9 daire, 3 dükkan (1.600 m²) kat karşılığı anahtar teslim olarak tamamlanmıştır.',
+  },
+  {
+    name: 'Hilal Mahallesi Konut ve Dükkanlar',
+    detail: '9 daire, 1 dükkan (1.777 m²) kat karşılığı anahtar teslim olarak tamamlanmıştır.',
+  },
+  {
+    name: 'Demetevler Konutları',
+    detail: '14 daire (2.300 m²) · 12 daire (1.900 m²) kat karşılığı anahtar teslim olarak tamamlanmıştır.',
+  },
+  {
+    name: 'Çayyolu Villa Projesi',
+    detail: '1 adet villa anahtar teslim olarak tamamlanmıştır.',
   },
 ];
 

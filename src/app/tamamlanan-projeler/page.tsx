@@ -1,11 +1,21 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { completedProjects } from '@/data/projects';
+import ProjectRows from '@/components/tamamlanan-projeler/ProjectRows';
+import ResidentialRows from '@/components/tamamlanan-projeler/ResidentialRows';
+import { completedProjects, residentialProjects } from '@/data/projects';
+
+export const metadata: Metadata = {
+  title: 'Tamamlanmış Projeler | Atılım Mühendislik',
+  description: '30 yılı aşkın tecrübemizle tamamladığımız büyük ölçekli altyapı ve yapı projeleri.',
+  openGraph: {
+    title: 'Tamamlanmış Projeler | Atılım Mühendislik',
+    description: '30 yılı aşkın tecrübemizle tamamladığımız büyük ölçekli altyapı ve yapı projeleri.',
+    images: [{ url: '/images/projects/esenboga-cover.png', width: 1200, height: 630 }],
+  },
+};
 
 export default function TamamlananProjelerPage() {
   return (
@@ -47,67 +57,24 @@ export default function TamamlananProjelerPage() {
 
       {/* ── Project List ── */}
       <section className="bg-white px-6 md:px-14 py-16">
+        <ProjectRows projects={completedProjects} />
+      </section>
+
+      {/* ── Konut ve Ticari Yapılar ── */}
+      <section className="bg-white px-6 md:px-14 pb-16">
         <div className="max-w-5xl mx-auto">
-          {completedProjects.map((project, i) => (
-            <motion.div
-              key={project.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="group flex items-center justify-between gap-6 py-7 border-b border-gray-100 first:border-t cursor-default overflow-hidden"
+          <div className="border-t border-gray-200 pt-12 mb-2">
+            <p className="text-[10px] tracking-[0.35em] text-gray-400 uppercase font-semibold mb-3">
+              Tamamlanmış Projelerimiz
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-bold text-black mb-0"
+              style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
             >
-              {/* Left — name + context */}
-              <div className="flex-1 min-w-0">
-                <p
-                  className="text-xl md:text-2xl font-bold text-black tracking-wide group-hover:text-red-600 transition-colors duration-500"
-                  style={{ fontFamily: "'Clash Display', system-ui, sans-serif" }}
-                >
-                  {project.name}
-                </p>
-                <p
-                  className="text-sm text-gray-500 mt-0 max-h-0 opacity-0 overflow-hidden
-                             group-hover:max-h-[2rem] group-hover:opacity-100 group-hover:mt-2
-                             transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-                >
-                  {project.description}
-                </p>
-              </div>
-
-              {/* Centre — meta (fades out on hover) */}
-              <div className="hidden md:flex gap-8 flex-shrink-0 group-hover:opacity-0 transition-opacity duration-500">
-                <div className="text-right">
-                  <p className="text-[9px] tracking-[0.25em] text-gray-400 uppercase">Konum</p>
-                  <p className="text-xs font-semibold text-gray-600 mt-0.5">{project.location}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[9px] tracking-[0.25em] text-gray-400 uppercase">Alan</p>
-                  <p className="text-xs font-semibold text-gray-600 mt-0.5">{project.area}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[9px] tracking-[0.25em] text-gray-400 uppercase">Yıl</p>
-                  <p className="text-xs font-semibold text-gray-600 mt-0.5">{project.year}</p>
-                </div>
-              </div>
-
-              {/* Right — image slides in */}
-              <div
-                className="flex-shrink-0 overflow-hidden rounded-lg
-                           w-0 group-hover:w-40
-                           transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
-              >
-                <div className="relative w-40 h-24">
-                  <Image
-                    src={project.coverImage}
-                    alt={project.name}
-                    fill
-                    className="object-cover rounded-lg"
-                    sizes="160px"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              Konut ve Ticari Yapılar
+            </h2>
+          </div>
+          <ResidentialRows projects={residentialProjects} />
         </div>
       </section>
 

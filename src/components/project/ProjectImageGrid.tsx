@@ -4,8 +4,13 @@ import { useState, useEffect, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 import LightboxModal from './LightboxModal';
 
+interface GridImage {
+  src: string;
+  label: string;
+}
+
 interface ProjectImageGridProps {
-  images: string[];
+  images: GridImage[];
   projectName: string;
   aboutProject: string;
   mapsUrl: string;
@@ -158,10 +163,16 @@ export default function ProjectImageGrid({
   const close = ()          => setLightboxIndex(null);
 
   const [img1, img2, img3] = images;
+  const label1 = img1?.label ?? 'PEYZAJ';
+  const label2 = img2?.label ?? 'KAT PLANI';
+  const label3 = img3?.label ?? 'İÇ TASARIM';
 
   // Extract the `q` param from the mapsUrl and build a proper embed URL.
   // Using www.google.com/maps avoids X-Frame-Options blocks on maps.google.com.
-  const rawQ = new URL(mapsUrl).searchParams.get('q') ?? '';
+  const rawQ = (() => {
+    try { return new URL(mapsUrl).searchParams.get('q') ?? ''; }
+    catch { return mapsUrl.split('?q=')[1]?.split('&')[0] ?? ''; }
+  })();
   const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(rawQ)}&output=embed&z=15&hl=tr`;
 
   const iframeStyle: React.CSSProperties = {
@@ -197,33 +208,33 @@ export default function ProjectImageGrid({
           <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} referrerPolicy="no-referrer-when-downgrade" />
         </ImageCell>
 
-        {/* PEYZAJ — spans both rows */}
-        <ImageCell badgeText="PEYZAJ" notchW={110} gridArea="peyzaj" onClick={() => open(0)}>
+        {/* IMAGE 1 — spans both rows */}
+        <ImageCell badgeText={label1} notchW={110} gridArea="peyzaj" onClick={() => open(0)}>
           <Image
-            src={img1}
-            alt={`${projectName} peyzaj`}
+            src={img1.src}
+            alt={`${projectName} ${label1.toLowerCase()}`}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
             sizes="30vw"
           />
         </ImageCell>
 
-        {/* İÇ TASARIM */}
-        <ImageCell badgeText="İÇ TASARIM" gridArea="ictasarim" onClick={() => open(2)}>
+        {/* IMAGE 3 */}
+        <ImageCell badgeText={label3} gridArea="ictasarim" onClick={() => open(2)}>
           <Image
-            src={img3}
-            alt={`${projectName} iç tasarım`}
+            src={img3.src}
+            alt={`${projectName} ${label3.toLowerCase()}`}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
             sizes="28vw"
           />
         </ImageCell>
 
-        {/* KAT PLANI */}
-        <ImageCell badgeText="KAT PLANI" gridArea="katplani" onClick={() => open(1)}>
+        {/* IMAGE 2 */}
+        <ImageCell badgeText={label2} gridArea="katplani" onClick={() => open(1)}>
           <Image
-            src={img2}
-            alt={`${projectName} kat planı`}
+            src={img2.src}
+            alt={`${projectName} ${label2.toLowerCase()}`}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
             sizes="22vw"
@@ -259,16 +270,16 @@ export default function ProjectImageGrid({
           <iframe src={embedUrl} title={`${projectName} konumu`} loading="lazy" style={iframeStyle} referrerPolicy="no-referrer-when-downgrade" />
         </ImageCell>
 
-        <ImageCell badgeText="PEYZAJ" onClick={() => open(0)} className="aspect-[16/9]">
-          <Image src={img1} alt="Peyzaj" fill className="object-cover" sizes="100vw" />
+        <ImageCell badgeText={label1} onClick={() => open(0)} className="aspect-[16/9]">
+          <Image src={img1.src} alt={label1} fill className="object-cover" sizes="100vw" />
         </ImageCell>
 
         <div className="grid grid-cols-2 gap-2">
-          <ImageCell badgeText="KAT PLANI" onClick={() => open(1)} className="aspect-square">
-            <Image src={img2} alt="Kat Planı" fill className="object-cover" sizes="50vw" />
+          <ImageCell badgeText={label2} onClick={() => open(1)} className="aspect-square">
+            <Image src={img2.src} alt={label2} fill className="object-cover" sizes="50vw" />
           </ImageCell>
-          <ImageCell badgeText="İÇ TASARIM" onClick={() => open(2)} className="aspect-square">
-            <Image src={img3} alt="İç Tasarım" fill className="object-cover" sizes="50vw" />
+          <ImageCell badgeText={label3} onClick={() => open(2)} className="aspect-square">
+            <Image src={img3.src} alt={label3} fill className="object-cover" sizes="50vw" />
           </ImageCell>
         </div>
 
